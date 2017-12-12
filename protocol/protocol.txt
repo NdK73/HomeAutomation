@@ -1,0 +1,130 @@
+Domotic protocol (version 1.0.0)
+================================
+
+When using IP as transport layer, every node must have its own address and must be able to receive and send data *only* from/to the local network.
+This protocol is *not* intended to be exposed to the Internet, even if some (limited) coutermeasures are implemented: multicast TTL is 1, longer answers require authenticated requests, etc. If accessibility from the Internet is needed, a gateway with proper security measures (SSL encryption, proper authentication, etc) *must* be used. The gateway can translate to other protocols, too.
+The packet format is constrained by UDP on ESP8266 (reference platform) that allows at most 1472 bytes per UDP packet (a single Ethernet frame).
+
+Default UDP port used is 55114. Default multicast address used is 239.255.215.74 (see RFC2365 "The IPv4 Local Scope", the last two octects are the integer 55114).
+If needed, "fake" MAC addresses can be generated as 4e:64:4b:xx:yy:zz ('N':'d':'K':xx:yy:zz) -- least significant bits of first octect are '10', that means "locally administerd (1)" and "unicast (0)".
+
+A packet is defined as:
+
+Pkt := UnicastPkt | MulticastPkt
+UnicastPkt := RequestPkt | AnswerPkt
+
+RequestPkt is sent from a client to a server to initiate an operation.
+
+RequestPkt := SimplePkt | SignedPkt | EncPkt
+  SimplePkt := CommandPacket | InfoPacket
+    CommandPacket := <'C'> {DigitalOutSpec | AnalogOutSpec | RegisterSpec}
+      DigitalOutSpec := <'D'> ByteHex <'0'|'1'|'T'>
+      AnalogOutSpec := <'A'> ByteHex WordHex
+        WordHex := ByteHex ByteHex
+      RegisterSpec := <'R'> ByteHex <0x20-0x7f>* // Till end of line or end of packet; register-specific parsing required
+    InfoPacket := <'I'> {DigitalInSpec | AnalogInSpec | RegisterReadSpec}
+      DigitalInSpec := <'D'> ByteHex
+      AnalogInSpec := <'A'> ByteHex
+      RegisterReadSpec := <'R'> ByteHex [ByteHex]
+  SignedPkt := <'S'> <sender> <signature> SimplePkt // TODO
+  EncPkt := <'E'> <keyslot> <payload> // Payload can be either SignedPkt or SimplePkt, and MUST be encrypted under given keyslot; TODO
+
+  ByteHex := <0-9|A-F><0-9|A-F>  // Max 256 'lines' per type
+
+AnswerPkt is sent from a server to the client that sent a RequestPkt. If it's sent, it MUST be addressed to the same IP and port that originated the RequestPkt.
+TODO: handle encryption and signing (should use the same as in request, if possible: what happens when using pubkeys?)
+
+AnswerPkt := <'A'> ErrorCode AnswerSpec
+  ErrorCode := ByteHex
+  AnswerSpec := <''> | <current status string depending on received SimplePkt>
+
+MulticastPkt can be generated either in response to some external event (a change in temperature, a timer expiring, ...) or in response to a RequestPkt.
+Nodes can listen to multicast packets to update their state or act in response to events happened on other nodes (f.e. a light turns on when a button on another node is pressed).
+
+MulticastPkt:= UpdatePacket
+  UpdatePacket := <'U'> WordHex EventSpec
+    EventSpec := InEvent | OutEvent
+      InEvent := <'I'> {DigitalEvent | AnalogEvent}
+        DigitalEvent := <'D'> ByteHex <'0'|'1'>
+        AnalogEvent := <'A'> ByteHex WordHex
+      OutEvent := <'O'> {DigitalEvent | AnalogEvent}
+
+Analog values are represented as an unsigned 16-bits word.
+
+Only "meaningful" AnalogEvent should be reported. The meaningfulness of the change is application- and sensor-specific. For example, it's usually useless to report every .01°C change in temperature for a room, but only a .1°C change -- or even a 2°C one if you're using a DHT11 (2°C error!). Rule of thumb: don't send more than a report every 10 seconds or so for a single entity to avoid flooding the network with useless data.
+
+Registers
+=========
+
+When reading register containing arrays, if the optional argument is omitted, only the array len is returned. If the optional argument is given, then the actual element is returned.
+
+00: node info, READONLY string, "1.0.0 digital_outs, analog_outs, digital_ins, analog_ins, max_txt_len, utf8_support"; numbers in *decimal*, utf8_support as 'T' or 'F'
+01: (Array<String>) node keys & supported algorithms, "algo=key_handle" , algo:='ec25519'(crypt)|'ed25519'(sign)|'aes-enc'|'aes-mac'|'unset'; empty array means neither authentication nor encryption are supported; key_handle for public keys is the actual public key, while for private keys is just a key handle (FIXME: define how it's generated); keys can only be set using encrypted packets
+02: hostname, string, max 32 characters (packet must be signed to allow changing), when read reports "<hostname> (<build_ID>)"
+03: flags; WordHex, TODO (UdpReportEnable?) -- currently RESERVED
+04: network info, string, write: "WIFI:SSID,password[,ip,mask]" (encrypted); read: "WIFI:SSID,ip"; write: "ETH:DHCP|ip,mask", read: "ETH:ip"; write/read: "BUS:nodeID" (bus must be on a different port than config interface)
+05: display message, string, max max_txt_len (from R0) printable-ASCII characters (0x20-0x7e) for message
+06-1f: reserved
+20: (Array<WordHex>) digital out port map
+21: (Array<WordHex>) analog out port map
+22: (Array<WordHex>) digital in port map
+23: (Array<WordHex>) analog in port map
+24: (Array<Event>) events
+25: (Array<?>) timer actions TODO
+26: (Array<WordHex>) timers intervals; most significant nibble is: 0=Monostable|1=Astable, 00=milliseconds, 01=seconds, 10=minutes, 11=hours, 0=RESERVED; the remaining 12 bits define the actual interval
+27-ff: reserved
+
+Every IO line MUST be member of a groupID (see maps registers 0x20-0x23). ID 0000 is reserved for "unconfigured": there COULD be a coordinator node that when seeing a multicast packet from group 0000 sends to the sender a groupid to configure it. Nodes with unconfigured IOs can be differentiated by IP address (easier, but IP can change after a reboot) or MAC address (harder, but -usually- stable) or any other method that the coordinator node considers feasible.
+
+Allowed characters for strings in array elements are [a-zA-Z0-9.:_-] .
+
+Data coming throught the serial port during the initial configuration (after a hard config reset -- usually a 10-seconds press of a protected button) is considered signed and encrypted (but it's actually unsigned plaintext).
+
+Display-enabled devices MIGHT handle "widgets" (bars, icons) as output ports (both analog and digital). If message is longer than allowed the device MUST show at least the first max_msg_len characters and MIGHT use scrolling to display the whole message.
+
+Changes to register contents must be saved to permanent storage before returning answer packet.
+
+/*************************************
+
+ TO BE RETHOUGHT COMPLETELY !
+
+ ||||||||||||||||||||||||||||
+ vvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
+Events and timers
+=================
+
+An "event" is the reaction of a node to a *multicast* message, irregardless if it's being transmitted or received. Unicast messages don't trigger event processing.
+
+A timer is a node-private object that (obviously) keeps track of time. It can only be started (starts from the definition in R27) and gets decremented automatically every tick (.1s = 10Hz). When it reaches 0, it fires an event. Timers need not to be very accurate (+/- a tick is still OK). Setting a timer to 0 disables it *without* firing an event. Only a single action is allowed for a timer.
+
+Events are thought for simple actions ('turn off a light after 30 seconds'). Complex scenarios COULD be coordinated by a management node (that COULD offer a more user-friendly interface or even a programmatic one). Anyway "semi-complex" scenarios are possible even with only a limited amount of events.
+
+Event := GroupID Condition {DigitalOutSpec | AnalogOutSpec | TimerSpec}
+  Condition := <'-'> | EventCond | Timer
+    EventCond := EventSpec [<'<'> | <'>'> | <'='>]  // Default is '='
+    Timer := <'T'> ByteHex
+    TimerSpec := Timer {<'0'> | <'1'>]
+TimerEvent:= Timer DigitalOutSpec
+
+The first match is on groupID. The second match is on Condition. '-' means the action is executed without checking anything.
+
+Examples (spaces added for readability):
+// Stepper: toggles out1 state every time digital input 4 of group 1234 goes low
+1234 ID04 0      D01 T
+// Control heating system with hysteresis
+ABCD IA01 21C0 > D03 0  // Turn off heating if temp > 21.0°C
+ABCD IA01 17C0 < D03 1  // Turn on heating if temp < 17.0°C
+// Toggle out2 when in7 of node 4567 goes low for more than 1s (R28 must contain "..,..,0A,...")
+4567 ID07 1      T02 0  // 4567:din7 is high: disable timer2
+4567 ID07 0      T02 1  // start timer2 (multicast is sent only when the signal is changing)
+T02  D02 T              // timer2 fires: toggle out2
+
+// --Not working-- Watchdog: other nodes are powered only when out1=1
+// Note that T00 is only started once a packet arrives, so even if the AP takes 10minutes to come back online it's not a problem!
+*    -      T00 0384   // restart timer 00 every time a multicast packet arrives; fires after 90s (900 = 0x0384)
+!    T00    D01 0      // when timer0 fires, out1 gets reset
+!    T00    T01 000A   // ... and timer1 is started (1s)
+!    T01    D01 1      // When timer1 expires, out1 returns to 1
+
+*/
