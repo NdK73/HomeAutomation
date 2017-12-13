@@ -4,4 +4,4 @@ TL;DR:
 - You are not allowed to extend the protocol and make it incompatible with the released docs.
 - Standard disclaimers apply.
 
-Hardware is under [[LICENSE-CERN|CERN OHL 1.2]], Software is under [[LICENSE-MIT|MIT licence]].
+Hardware is under [CERN OHL 1.2](LICENSE-CERN), software is under [MIT license](LICENSE-MIT).
