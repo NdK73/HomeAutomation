@@ -1,4 +1,4 @@
-Domotic protocol (version 1.0.0)
+Domotic protocol (version 0.1.0)
 ================================
 
 When using IP as transport layer, every node must have its own address and must be able to receive and send data *only* from/to the local network.
@@ -58,8 +58,8 @@ Registers
 
 When reading register containing arrays, if the optional argument is omitted, only the array len is returned. If the optional argument is given, then the actual element is returned.
 
-00: node info, READONLY string, "1.0.0 digital_outs, analog_outs, digital_ins, analog_ins, max_txt_len, utf8_support"; numbers in *decimal*, utf8_support as 'T' or 'F'
-01: (Array<String>) node keys & supported algorithms, "algo=key_handle" , algo:='ec25519'(crypt)|'ed25519'(sign)|'aes-enc'|'aes-mac'|'unset'; empty array means neither authentication nor encryption are supported; key_handle for public keys is the actual public key, while for private keys is just a key handle (FIXME: define how it's generated); keys can only be set using encrypted packets
+00: node info, READONLY string, "protocol_version digital_outs analog_outs digital_ins analog_ins max_txt_len utf8_support"; protocol_version is currently "0.1.0", numbers in *decimal*, utf8_support as 'T' or 'F'
+01: (Array<String>) node keys & supported algorithms, "algo=key_handle" , algo:='ec25519'(key exchange)|'ed25519'(sign)|'aes-enc'|'aes-mac'|'unset'; empty array means neither authentication nor encryption are supported, else number of slots tells the number of keys that can be used; key_handle for public keys is the actual public key, while for private keys is just a key handle (FIXME: define how it's generated), if the key is not yet set but the slot is reserved for a certain algo, handle can be empty; keys can only be set using encrypted packets
 02: hostname, string, max 32 characters (packet must be signed to allow changing), when read reports "<hostname> (<build_ID>)"
 03: flags; WordHex, TODO (UdpReportEnable?) -- currently RESERVED
 04: network info, string, write: "WIFI:SSID,password[,ip,mask]" (encrypted); read: "WIFI:SSID,ip"; write: "ETH:DHCP|ip,mask", read: "ETH:ip"; write/read: "BUS:nodeID" (bus must be on a different port than config interface)
