@@ -19,6 +19,8 @@ A node based on ESP8266 to be mounted in a 6-modules DIN rail enclosure.
 
 Provides 4 SSR outputs and an expansion bus connector.
 
+[OSHW] IT000001 | [https://oshwa.org/cert](Certified open source hardware)
+
 ### [DomoNode-inout](domonode-inout-1.1)
 
 An expansion node to be mounted in a 6-modules DIN rail enclosure.
