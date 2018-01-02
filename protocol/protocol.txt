@@ -53,7 +53,7 @@ MulticastPkt:= UpdatePacket | SignedUpdatePacket
 
 Analog values are represented as an unsigned 16-bits word.
 
-TimeEvent is usually generated periodically (at least every minute, up to once per second) by a coordinator node with access to accurate timekeeping HW and/or external sources (NTP, GPS, etc). The only epoch currently defined is 00 (for Unix epoch: seconds since Jan, 1, 1970 -- will last till Jan 2038), hictr and loctr are a single 32-bit counter. Security-sensitive nodes must sanitize it (checking that it does not deviate too much from internal clock, adding sequence numbers to packets sent during the same second, etc) and should only trust signed updates.
+TimeEvent is usually generated periodically (at least every minute, up to once per second) by a coordinator node with access to accurate timekeeping HW and/or external sources (NTP, GPS, etc). The only epoch currently defined is 00 (for Unix epoch: seconds since Jan, 1, 1970 -- will last till Jan 2106), hictr and loctr are a single 32-bit counter. Security-sensitive nodes must sanitize it (checking that it does not deviate too much from internal clock, adding sequence numbers to packets sent during the same second, etc) and should only trust signed updates.
 
 Only "meaningful" AnalogEvent should be reported. The meaningfulness of the change is application- and sensor-specific. For example, it's usually useless to report every .01°C change in temperature for a room, but only a .1°C change -- or even a 2°C one if you're using a DHT11 (2°C error!). Rule of thumb: don't send more than a report every 10 seconds or so for a single entity to avoid flooding the network with useless data.
 
