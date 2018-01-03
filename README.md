@@ -13,6 +13,9 @@ The most critical element is currently the access point, that is so cheap that h
 Messages must support authentication and encryption to guarantee that confidential packets or dangerous commands are actually sent from an authorized source.
 
 ## HW
+
+All HW designs are in [KiCAD](http://kicad-pcb.org/) 4.0.2 (currently, will follow what's packaged in latest [Ubuntu LTS](https://www.ubuntu.com/)) so not to require nonstandard installs.
+
 ### [DomoNode](domonode-1.1)
 
 A node based on ESP8266 to be mounted in a 6-modules DIN rail enclosure.
