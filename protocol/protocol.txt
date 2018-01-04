@@ -8,6 +8,16 @@ The packet format is constrained by UDP on ESP8266 (reference platform) that all
 Default UDP port used is 55114. Default multicast address used is 239.255.215.74 (see RFC2365 "The IPv4 Local Scope", the last two octects are the integer 55114).
 If needed, "fake" MAC addresses can be generated as 4e:64:4b:xx:yy:zz ('N':'d':'K':xx:yy:zz) -- least significant bits of first octect are '10', that means "locally administerd (1)" and "unicast (0)".
 
+Every node in the network is configured with an unique ID ('sender'). 0x0000 means "unconfigured" and 0xFFFF is reserved.
+
+Every IO line MUST be member of a groupID (see maps in registers 0x20-0x23), that is used to report its changes. ID 0000 is reserved for unconfigured IOs that MUST NOT be reported. GroupID allocation strategy is instance-specific and not covered by protocol.
+
+Allowed characters for strings in array elements are [a-zA-Z0-9.:_-] .
+
+Data coming throught the serial port during the initial configuration (after a hard config reset -- usually a 10-seconds press of a protected button) is considered signed and encrypted (but it's actually unsigned plaintext).
+
+Display-enabled devices MIGHT handle "widgets" (bars, icons) as output ports (both analog and digital). If message is longer than allowed the device MUST show at least the first max_msg_len characters and MIGHT use scrolling to display the whole message.
+
 A packet is defined as:
 
 Pkt := UnicastPkt | MulticastPkt
@@ -42,16 +52,16 @@ MulticastPkt can be generated either in response to some external event (a chang
 Nodes can listen to multicast packets to update their state or act in response to events happened on other nodes (f.e. a light turns on when a button on another node is pressed).
 
 MulticastPkt:= UpdatePacket | SignedUpdatePacket
-  SignedUpdatePacket := 'S' <sender:WordHex> <keyslot:ByteHex> <signature:Array<ByteHex>> UpdatePacket
-  UpdatePacket := <'U'> <group:WordHex> EventSpec
+  SignedUpdatePacket := 'S' <keyslot:ByteHex> <signature:Array<ByteHex>> UpdatePacket // Sender is taken from UpdatePacket
+  UpdatePacket := <'U'> <sender:WordHex> EventSpec
     EventSpec := InEvent | OutEvent | TimeEvent
       InEvent := <'I'> {DigitalEvent | AnalogEvent}
-        DigitalEvent := <'D'> <io#:ByteHex> <'0'|'1'>
-        AnalogEvent := <'A'> <io#:ByteHex> <value:WordHex>
+        DigitalEvent := <'D'> <group:WordHex> <'0'|'1'>
+        AnalogEvent := <'A'> <group:WordHex> <value:WordHex>
       OutEvent := <'O'> {DigitalEvent | AnalogEvent}
       TimeEvent := <'T'> <epoch:ByteHex> <hictr:WordHex> <loctr:WordHex> <tz_dst:ByteHex>
 
-Analog values are represented as an unsigned 16-bits word.
+Analog values are represented as an unsigned 16-bits word. Temperatures should be converted in centi-Kelvin unless peculiar needs require otherwise.
 
 TimeEvent is usually generated periodically (at least every minute, up to once per second) by a coordinator node with access to accurate timekeeping HW and/or external sources (NTP, GPS, etc). The only epoch currently defined is 00 (for Unix epoch: seconds since Jan, 1, 1970 -- will last till Jan 2106), hictr and loctr are a single 32-bit counter. tz_dst packs timezone relative to GMT in lower 5 bits (signed) and if dst is active or not in bit 5. Bits 6 and 7 are reserved and must be 0. Security-sensitive nodes must sanitize it (checking that it does not deviate too much from internal clock, adding sequence numbers to packets sent during the same second, etc) and should only trust signed updates.
 
@@ -62,7 +72,9 @@ Registers
 
 When reading register containing arrays, if the optional argument is omitted, only the array len is returned. If the optional argument is given, then the actual element is returned.
 
-00: node info, READONLY string, "protocol_version digital_outs analog_outs digital_ins analog_ins max_txt_len utf8_support"; protocol_version is currently "0.1.0", numbers in *decimal*, utf8_support as 'T' or 'F'
+Changes to register contents must be saved to permanent storage before returning answer packet.
+
+00: node info, READ: string, "protocol_version digital_outs analog_outs digital_ins analog_ins max_txt_len utf8_support"; protocol_version is currently "0.1.0", numbers in *decimal*, utf8_support as 'T' or 'F'; WRITE (requires a signed packet *and* 'sender'==0x0000) sets 'sender' (node-ID)
 01: (Array<String>) node keys & supported algorithms, "algo=key_handle" , algo:='ec25519'(key exchange)|'ed25519'(sign)|'aes-enc'|'aes-mac'|'unset'; empty array means neither authentication nor encryption are supported, else number of slots tells the number of keys that can be used; key_handle for public keys is the actual public key, while for private keys is just a key handle (FIXME: define how it's generated), if the key is not yet set but the slot is reserved for a certain algo, handle can be empty; keys can only be set using encrypted packets
 02: hostname, string, max 32 characters (packet must be signed to allow changing), when read reports "<hostname> (<build_ID>)"
 03: flags; WordHex, TODO (UdpReportEnable?) -- currently RESERVED
@@ -77,16 +89,6 @@ When reading register containing arrays, if the optional argument is omitted, on
 25: (Array<?>) timer actions TODO
 26: (Array<WordHex>) timers intervals; most significant nibble is: 0=Monostable|1=Astable, 00=milliseconds, 01=seconds, 10=minutes, 11=hours, 0=RESERVED; the remaining 12 bits define the actual interval
 27-ff: reserved
-
-Every IO line MUST be member of a groupID (see maps registers 0x20-0x23). ID 0000 is reserved for "unconfigured": there COULD be a coordinator node that when seeing a multicast packet from group 0000 sends to the sender a groupid to configure it. Nodes with unconfigured IOs can be differentiated by IP address (easier, but IP can change after a reboot) or MAC address (harder, but -usually- stable) or any other method that the coordinator node considers feasible.
-
-Allowed characters for strings in array elements are [a-zA-Z0-9.:_-] .
-
-Data coming throught the serial port during the initial configuration (after a hard config reset -- usually a 10-seconds press of a protected button) is considered signed and encrypted (but it's actually unsigned plaintext).
-
-Display-enabled devices MIGHT handle "widgets" (bars, icons) as output ports (both analog and digital). If message is longer than allowed the device MUST show at least the first max_msg_len characters and MIGHT use scrolling to display the whole message.
-
-Changes to register contents must be saved to permanent storage before returning answer packet.
 
 /*************************************
 
