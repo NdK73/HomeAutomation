@@ -12,6 +12,8 @@ The most critical element is currently the access point, that is so cheap that h
 
 Messages must support authentication and encryption to guarantee that confidential packets or dangerous commands are actually sent from an authorized source.
 
+**Warning**: protocol is still **work in progress** and **unstable**: non-backward-compatible changes are still possible! Only after 1.0.0 milestone changes that introduce incompatibilities will be delayed till 2.0.0 .
+
 ## HW
 
 All HW designs are in [KiCAD](http://kicad-pcb.org/) 4.0.2 (currently, will follow what's packaged in latest [Ubuntu LTS](https://www.ubuntu.com/)) so not to require nonstandard installs.
