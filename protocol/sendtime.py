@@ -16,9 +16,14 @@ signtime=2
 
 ### Actual logic
 #timestamp="%08x"%hex(signtime+int(time.time()))[2:-1]
-timestamp="%08x"%(signtime+int(time.time()))
-#TODO: parse system's TZ and DST for the last part of the command
-timeupdcmd="T00"+timestamp+"01"
+now=time.time()
+timestamp="%08x"%(signtime+int(now))
+# Parse system's TZ and DST for the last part of the command
+tz_dst = int(time.timezone/-3600)
+tz_dst = tz_dst&0x1f + (1<<5)
+#*(1+time.localtime(now).tm_isdst)
+
+timeupdcmd="T00"+timestamp+"%02x"%tz_dst
 
 m=keyid + timeupdcmd
 #print "m=", m
@@ -27,9 +32,7 @@ m=keyid + timeupdcmd
 sk=binascii.unhexlify("9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60")
 pk=binascii.unhexlify("d75a980182b10ab7d54bfed3c964073a0ee172f3daa62325af021a68f707511a")
 
-s = ed25519.signature(m,sk,pk)
-
-#print binascii.hexlify(s)
+s = binascii.hexlify(ed25519.signature(m,sk,pk))
 
 cmd = "S"+keyid+s+timeupdcmd
 #print cmd
