@@ -34,6 +34,8 @@ Provides 4 SSR outputs, 3 220V opto-isolated inputs and 8 5V GPIOs.
 
 Uses a PCA9555 for GPIOs and a 24C02 to store the expander config.
 
+[OSHW] IT000002 | [Certified open source hardware](https://oshwa.org/cert)
+
 ### DomoDisp (WIP)
 
 A node based on ESP8266 that provides physical user interface to the system. Uses a 1.8" ST7735 LCD color display and a rotative encoder. Designed to be mounted either on the front of a DIN rail box or inside a 4-modules Vimar Plana frame -- other frames could work but are untested.
