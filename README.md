@@ -26,7 +26,7 @@ Provides 4 SSR outputs and an expansion bus connector.
 
 [OSHW] IT000001 | [Certified open source hardware](https://oshwa.org/cert)
 
-### [DomoNode-inout](domonode-inout-1.1)
+### [DomoNode-inout](domonode-inout) 1.1.1
 
 An expansion node to be mounted in a 6-modules DIN rail enclosure.
 
