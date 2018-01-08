@@ -36,11 +36,15 @@ Uses a PCA9555 for GPIOs and a 24C02 to store the expander config.
 
 [OSHW] IT000002 | [Certified open source hardware](https://oshwa.org/cert)
 
-### DomoDisp (WIP)
+### [DomoDisp](domodisp) 1.1
 
 A node based on ESP8266 that provides physical user interface to the system. Uses a 1.8" ST7735 LCD color display and a rotative encoder. Designed to be mounted either on the front of a DIN rail box or inside a 4-modules Vimar Plana frame -- other frames could work but are untested.
 
-Requires a 5V power source (possibly a DomoNode-inout).
+Requires a 5V power source (possibly a DomoNode-inout, but a dedicated module with power and relay will be published as soon as it's ready).
+
+Includes sample "lib" for reading the encoder (needs cleanup... there still are traces of experiments I did to read ESP's ADC from an interrupt routine).
+
+The display can be managed by TFT_eSPI and works up to 27MHz -- remember to edit User_setup.h before compiling your sketch!
 
 ## SW
 
