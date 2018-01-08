@@ -10,7 +10,7 @@ import ed25519
 MCAST_ADDR = "239.255.215.74"
 MCAST_PORT = 55114
 # KeyID is unique in the system (to be able to verify, a node must already have the corresponding public or shared key in a keyslot).
-keyid="0000"
+keyid="0001"
 # On my machine this script takes ~2s to generate the signature: add it to timestamp!
 signtime=2
 
