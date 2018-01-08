@@ -44,7 +44,7 @@ Requires a 5V power source (possibly a DomoNode-inout, but a dedicated module wi
 
 Includes sample "lib" for reading the encoder (needs cleanup... there still are traces of experiments I did to read ESP's ADC from an interrupt routine).
 
-The display can be managed by TFT_eSPI and works up to 27MHz -- remember to edit User_setup.h before compiling your sketch!
+The display can be managed by [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI) lib and works up to 27MHz (only 10MHz when testing on breadboard) -- remember to edit User_setup.h before compiling your sketch!
 
 ## SW
 
