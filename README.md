@@ -46,6 +46,8 @@ Includes sample "lib" for reading the encoder (needs cleanup... there still are 
 
 The display can be managed by [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI) lib and works up to 27MHz (only 10MHz when testing on breadboard) -- remember to edit User_setup.h before compiling your sketch!
 
+[OSHW] IT000003 | [Certified open source hardware](https://oshwa.org/cert)
+
 ## SW
 
 Still work in progress.
