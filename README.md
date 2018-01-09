@@ -8,7 +8,7 @@ This project consists of a protocol spec, the design files for physical nodes an
 
 The basic concept is that **no coordinator** is needed for the nodes to work after the initial configuration. There must not be a single point of (catastrophic) failure.
 
-The most critical element is currently the access point, that is so cheap that having a cold-standy one should not be a problem.
+The most critical element is currently the access point, that is so cheap that having a cold-standby one should not be a problem.
 
 Messages must support authentication and encryption to guarantee that confidential packets or dangerous commands are actually sent from an authorized source.
 
