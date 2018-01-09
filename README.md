@@ -16,7 +16,7 @@ Messages must support authentication and encryption to guarantee that confidenti
 
 ## HW
 
-All HW designs are in [KiCAD](http://kicad-pcb.org/) 4.0.2 (currently, will follow what's packaged in latest [Ubuntu LTS](https://www.ubuntu.com/)) so not to require nonstandard installs.
+All HW designs are in [KiCAD](http://kicad-pcb.org/) 4.0.x (will follow what's packaged in latest [Ubuntu LTS](https://www.ubuntu.com/)) so not to require nonstandard installs.
 
 ### [DomoNode](domonode) 1.1
 
