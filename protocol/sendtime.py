@@ -11,8 +11,8 @@ MCAST_ADDR = "239.255.215.74"
 MCAST_PORT = 55114
 # KeyID is unique in the system (to be able to verify, a node must already have the corresponding public or shared key in a keyslot).
 keyid="0001"
-# On my machine this script takes ~2s to generate the signature and the ESP spends another ~900ms to verify it: add total to timestamp!
-signtime=3
+# On my machine this script takes ~2s to generate the signature: add it to the timestamp. The 900ms used by ESP8266 must not be considered.
+signtime=2
 
 ### Actual logic
 #timestamp="%08x"%hex(signtime+int(time.time()))[2:-1]
