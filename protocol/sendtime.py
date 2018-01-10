@@ -11,8 +11,8 @@ MCAST_ADDR = "239.255.215.74"
 MCAST_PORT = 55114
 # KeyID is unique in the system (to be able to verify, a node must already have the corresponding public or shared key in a keyslot).
 keyid="0001"
-# On my machine this script takes ~2s to generate the signature: add it to timestamp!
-signtime=2
+# On my machine this script takes ~2s to generate the signature and the ESP spends another ~900ms to verify it: add total to timestamp!
+signtime=3
 
 ### Actual logic
 #timestamp="%08x"%hex(signtime+int(time.time()))[2:-1]
@@ -25,7 +25,8 @@ tz_dst = tz_dst&0x1f + (1<<5)
 
 timeupdcmd="T00"+timestamp+"%02x"%tz_dst
 
-m=keyid + timeupdcmd
+# Sign only the "update time" command
+m=timeupdcmd
 #print "m=", m
 
 # Key taken from reference code at https://ed25519.cr.yp.to/software.html

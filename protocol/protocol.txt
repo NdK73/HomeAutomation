@@ -42,7 +42,10 @@ RequestPkt := SimplePkt | SignedPkt | EncPkt
   ByteHex := <0-9|A-F><0-9|A-F>  // Max 256 'lines' per type
 
 AnswerPkt is sent from a server to the client that sent a RequestPkt. If it's sent, it MUST be addressed to the same IP and port that originated the RequestPkt.
-TODO: handle encryption and signing (should use the same as in request, if possible: what happens when using pubkeys?)
+
+In SignedPkt (and the following SignedUpdatePkt) the signature covers only payload data (SimplePkt or EventSpec), *NOT* including termination character (CR or \x00).
+
+TODO: handle encryption (should use the same key as in request, if possible: what happens when using pubkeys?)
 
 AnswerPkt := <'A'> ErrorCode AnswerSpec
   ErrorCode := ByteHex
