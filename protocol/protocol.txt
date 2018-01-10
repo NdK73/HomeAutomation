@@ -32,11 +32,11 @@ RequestPkt := SimplePkt | SignedPkt | EncPkt
       AnalogOutSpec := <'A'> <input#:ByteHex> <value:WordHex>
         WordHex := <hibyte:ByteHex> <lobyte:ByteHex>
       RegisterSpec := <'R'> <reg#:ByteHex> <0x20-0x7f>* // Till end of line or end of packet; register-specific parsing required
-    InfoPacket := <'I'> {DigitalReadSpec | AnalogReadSpec | RegisterReadSpec | RegisterInfoSpec}
+    InfoPacket := <'I'> {DigitalReadSpec | AnalogReadSpec | AnalogInfoSpec | RegisterReadSpec}
       DigitalReadSpec := <'D'> <'I'|'O'> <io#:ByteHex>
       AnalogReadSpec := <'A'> <'I'|'O'> <io#:ByteHex>
+      AnalogInfoSpec := <'I'> <'I'|'O'> <io#:ByteHex>
       RegisterReadSpec := <'R'> <reg#:ByteHex> [<arrayelement#:ByteHex>]
-      RegisterInfoSpec := <'I'> <reg#:ByteHex> <elem#:ByteHex>
   SignedPkt := <'S'> <keyID:WordHex> <signature:Array<ByteHex>> SimplePkt // TODO
   EncPkt := <'E'> <keyID:WordHex> <payload:Array<ByteHex>> // Payload can be either SignedPkt or SimplePkt, and MUST be encrypted under given key; TODO
 
