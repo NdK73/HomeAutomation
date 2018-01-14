@@ -63,7 +63,7 @@ If err is zero, AnswerSpec depends on SimplePkt:
   II: <'R'> <'I'> {InfoBool | InfoPercent | InfoTemp | InfoPower | InfoUserFloat | InfoText} <descr:<0x20-0x7f>*>
     InfoBool := <'B'>
     InfoPercent := <'%'> <decimals:0-3>
-    InfoTemp := <'K'> <decimals:0-2>					// By default room temperatures are reported in centi-Kelvin (T02)
+    InfoTemp := <'K'> <decimals:0-2>					// By default room temperatures are reported in centi-Kelvin (K2)
     InfoPower := <'W'> <decimals:0-2>					// Power in Watts (0.00 to 65535) -- usually home appliances use decimals=0 (1W resolution)
     InfoUserFloat := <'F'> <numerator:WordHex> <denominator:WordHex>	// Float=(numerator*regvalue)/(denominator*65536); note that result is strictly < numerator/denominator
     InfoText := <'T'> <maxlen:ByteHex>
