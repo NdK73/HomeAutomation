@@ -31,4 +31,5 @@ sock.setblocking(1)
 sock.sendto(bytes(sys.argv[2], "utf-8"), (server, MCAST_PORT))
 
 if ( receive ) :
-    print(sock.recv(1500).decode("utf-8"), end='', flush=True)
+    #print(sock.recv(1500).decode("utf-8"), end='', flush=True)
+    print(sock.recv(1500).decode("utf-8"), flush=True)
