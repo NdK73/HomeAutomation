@@ -52,4 +52,4 @@ The display can be managed by [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI) lib
 
 Still work in progress.
 
-A sketch with partial protocol implementation is under test.
+A sketch with [partial protocol implementation](https://github.com/NdK73/Domotic) is under test.
