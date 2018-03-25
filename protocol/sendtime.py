@@ -19,9 +19,9 @@ signtime=2
 now=time.time()
 timestamp="%08x"%(signtime+int(now))
 # Parse system's TZ and DST for the last part of the command
-tz_dst = int(time.timezone/-3600)
-tz_dst = tz_dst&0x1f + (1<<5)
-#*(1+time.localtime(now).tm_isdst)
+tz_dst = int(time.timezone/-3600) & 0x1f
+if time.localtime(now).tm_isdst and time.daylight:
+    tz_dst += (1<<5)
 
 timeupdcmd="T00"+timestamp+"%02x"%tz_dst
 
