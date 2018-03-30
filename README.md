@@ -6,7 +6,7 @@ This project consists of a protocol spec, the design files for physical nodes an
 
 [Full protocol description](protocol/protocol.txt) is available, together with examples of a [monitor](protocol/dom-monitor.py) and a [sender](protocol/dom-send.py). The protocol is text-based to ease debugging.
 
-The basic concept is that **no coordinator** is needed for the nodes to work after the initial configuration. There must not be a single point of (catastrophic) failure.
+**ClearSky technology inside**: the basic concept is that **no coordinator** is needed for the nodes to work after the initial configuration. There must not be a single point of (catastrophic) failure. And obviously no "cloud" (hence **ClearSky**) service is needed either: you, and only you, decide if/when/which data can exit from your network!
 
 The most critical element is currently the access point, that is so cheap that having a cold-standby one should not be a problem.
 
