@@ -48,6 +48,20 @@ The display can be managed by [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI) lib
 
 [OSHW] IT000003 | [Certified open source hardware](https://oshwa.org/cert)
 
+### [DomoInputs](domoinputs) 1.0
+
+WIP
+
+An expansion board with 11 inputs @ 220V and 5 low-voltage IOs.
+
+### [DomoSwitch](domoswitch) 1.0
+
+WIP
+
+A node that hosts 2 relays (or SSRs -- double footprint), 2 pushbuttons and 2 RGB LEDs. Split in 3 sub-boards to fit behind a 2-modules [Vimar Plana 14042 hole cover](https://www.vimar.com/it/it/catalog/product/index/code/14042).
+
+The buttons and LEDs are placed so that they match the markers inside the 14042 cover, simplyfying the assemply. TODO: support to enclose the dangerous sub-boards (I'll have to prototype it with a 3D printer, but will need a resin cast for the final version).
+
 ## SW
 
 Still work in progress.
