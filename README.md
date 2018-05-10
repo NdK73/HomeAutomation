@@ -48,7 +48,7 @@ The display can be managed by [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI) lib
 
 [OSHW] IT000003 | [Certified open source hardware](https://oshwa.org/cert)
 
-### [DomoInputs](domoinputs) 1.0
+### [DomoNode-inputs](domonode-inputs) 1.0
 
 WIP
 
