@@ -48,6 +48,12 @@ The display can be managed by [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI) lib
 
 [OSHW] IT000003 | [Certified open source hardware](https://oshwa.org/cert)
 
+### [DomoDispV2](domodisp2) 2.0
+
+**Future** release using shared SPI bus for display, freeing 2 GPIOs. One of the freed GPIOs is used to control dimming.
+
+**WARNING**: FW is incompatible with old DomoDisp!
+
 ### [DomoNode-inputs](domonode-inputs) 1.0
 
 WIP - Still untested !
