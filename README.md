@@ -50,9 +50,11 @@ The display can be managed by [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI) lib
 
 ### [DomoNode-inputs](domonode-inputs) 1.0
 
-WIP
+WIP - Still untested !
 
 An expansion board with 11 inputs @ 220V and 5 low-voltage IOs.
+
+When inputs are powered from 220V they get read as logic low. Low-voltage inputs are directly connected to PCA9555 lines so there's a weak (100k) pullup active at powerup. If you want to use 'em as outputs remember to use inverted logic to avoid glitches.
 
 ### [DomoSwitch](domoswitch) 1.0
 
