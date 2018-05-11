@@ -18,6 +18,16 @@ Messages must support authentication and encryption to guarantee that confidenti
 
 All HW designs are in [KiCAD](http://kicad-pcb.org/) 4.0.x (will follow what's packaged in latest [Ubuntu LTS](https://www.ubuntu.com/)) so not to require nonstandard installs.
 
+DIN-rail mounted devices are designed for the 6-modules [AK-DR-04C enclosure](https://www.aliexpress.com/item/-/1733706262.html).
+
+Other devices are designed to be compatible with Vimar Plana series, but should fit other series with minor adjustements.
+
+In the given layouts I use KF2EDGK **right-angle** (KF-2P, KF-4P or KF-6P) 5.08mm (or 3.81mm) pitch connectors so I can detach the node from power without having exposed wires with dangerous voltage laying around (and can reconnect it quickly and safely). Be sure to buy the angled version or you'll have a lot of extra work to bend the pins!
+
+**Warning**: I did my best to keep the costs down without sacrificing security. Choice of the power brick is really important for security: **never** use HLK-PM01 clones unless you know what you're doing -- and even then it's better to avoid using 'em! If in doubt buy directly from [Hi-Link](http://www.hlktech.net/) (sorry, plain http, not https...). Probably the boards can't pass CE certification only because of conducted emissions, but since I don't have access to test equipment **use at your own risk** (or have 'em certified).
+
+SSRs and relays should always be sourced from reputable sources. If in doubt, do not load 'em near the limits. For example never try a 400W load on a 2A SSR -- use a servo-relay. 2A SSRs are good for a couple of LED lamps, or a 40W bulb.
+
 ### [DomoNode](domonode) 1.1
 
 A node based on ESP8266 to be mounted in a 6-modules DIN rail enclosure.
