@@ -28,13 +28,13 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:domoinputs-cache
+LIBS:domonode-inputs-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title "DomoInputs"
+Title "domonode-inputs"
 Date "2018-01-22"
 Rev "1.0"
 Comp "CSSHL.org"

@@ -1,4 +1,4 @@
-update=gio 10 mag 2018 22:46:39 CEST
+update=mer 02 mag 2018 15:05:52 CEST
 version=1
 last_client=kicad
 [pcbnew]
@@ -59,13 +59,3 @@ LibName27=atmel
 LibName28=contrib
 LibName29=valves
 LibName30=/home/ndk/Dropbox/Applicazioni/Kicad/Libraries/pca9555
-[schematic_editor]
-version=1
-PageLayoutDescrFile=
-PlotDirectoryName=
-SubpartIdSeparator=0
-SubpartFirstId=65
-NetFmtName=
-SpiceForceRefPrefix=0
-SpiceUseNetNumbers=0
-LabSize=60
