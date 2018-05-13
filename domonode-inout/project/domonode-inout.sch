@@ -2,36 +2,7 @@ EESchema Schematic File Version 2
 LIBS:acdc
 LIBS:ssr
 LIBS:power
-LIBS:device
-LIBS:transistors
 LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
-LIBS:switches
-LIBS:pca9555
 LIBS:domonode-inout-cache
 EELAYER 25 0
 EELAYER END
@@ -39,8 +10,8 @@ $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "DomoNode-inout"
-Date "2018-01-08"
-Rev "1.1.1"
+Date "2018-05-13"
+Rev "1.1.2"
 Comp "CSSHL.org"
 Comment1 ""
 Comment2 ""
@@ -191,21 +162,10 @@ F 3 "" H 9250 1450 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L CONN_01X03 P1
-U 1 1 5989A97A
-P 1000 2700
-F 0 "P1" H 1000 2900 50  0000 C CNN
-F 1 "CONN_01X03" V 1100 2700 50  0000 C CNN
-F 2 "Connect:AK300-3" H 1000 2700 50  0001 C CNN
-F 3 "" H 1000 2700 50  0000 C CNN
-	1    1000 2700
-	-1   0    0    -1  
-$EndComp
-$Comp
-L CONN_01X10 P2
+L CONN_01X10 J1
 U 1 1 598D80AA
 P 10450 4400
-F 0 "P2" H 10450 4900 50  0000 C CNN
+F 0 "J1" H 10450 4950 50  0000 C CNN
 F 1 "CONN_2x5" V 10550 4400 50  0001 C CNN
 F 2 "Connectors_Multicomp:Multicomp_MC9A12-1034_2x05x2.54mm_Straight" V 10450 4400 50  0001 C CNN
 F 3 "" H 10450 4400 50  0000 C CNN
@@ -239,17 +199,6 @@ F 2 "AAA mie lib verificate:G3MB" H 2400 2550 60  0001 C CNN
 F 3 "" H 2400 2550 60  0001 C CNN
 	1    2400 2550
 	1    0    0    -1  
-$EndComp
-$Comp
-L CONN_01X03 P3
-U 1 1 598F3421
-P 1000 3200
-F 0 "P3" H 1000 3400 50  0000 C CNN
-F 1 "CONN_01X03" V 1100 3200 50  0000 C CNN
-F 2 "Connect:AK300-3" H 1000 3200 50  0001 C CNN
-F 3 "" H 1000 3200 50  0000 C CNN
-	1    1000 3200
-	-1   0    0    -1  
 $EndComp
 Wire Wire Line
 	2000 2150 1700 2150
@@ -347,8 +296,8 @@ Text Label 1600 1200 2    60   ~ 0
 N
 Wire Wire Line
 	2450 1700 2100 1700
-Text Notes 7050 7100 0    60   ~ 0
-Note: Omron G3MB-202 (2A SSR) can be replaced by Panasonic APAN3105 (5A relays)\nIf only one expansion module is needed, avoid mounting power section and close J4.\nIOx lines are HIGH at power on via pull-ups.\n
+Text Notes 7000 7000 0    60   ~ 0
+Note: if only one expansion module is needed, avoid mounting power section and close J4.\nAt power on IOx lines are INPUTS pulled HIGH via weak pull-ups.\n
 Wire Wire Line
 	1800 1700 1600 1700
 Wire Wire Line
@@ -501,7 +450,7 @@ Wire Wire Line
 	2000 2950 1700 2950
 Text Label 1700 2950 2    60   ~ 0
 RL2P
-Text Label 1200 2800 0    60   ~ 0
+Text Label 1200 3000 0    60   ~ 0
 RL1P
 Text Label 1200 3100 0    60   ~ 0
 RL2P
@@ -631,39 +580,17 @@ Wire Wire Line
 	10250 2100 10450 2100
 Wire Wire Line
 	10250 2000 10450 2000
-$Comp
-L CONN_01X03 P4
-U 1 1 59EDBBC5
-P 1000 3700
-F 0 "P4" H 1000 3900 50  0000 C CNN
-F 1 "CONN_01X03" V 1100 3700 50  0000 C CNN
-F 2 "Connect:AK300-3" H 1000 3700 50  0001 C CNN
-F 3 "" H 1000 3700 50  0000 C CNN
-	1    1000 3700
-	-1   0    0    -1  
-$EndComp
-$Comp
-L CONN_01X03 P5
-U 1 1 59EDD1CF
-P 1000 4200
-F 0 "P5" H 1000 4400 50  0000 C CNN
-F 1 "CONN_01X03" V 1100 4200 50  0000 C CNN
-F 2 "Connect:AK300-3" H 1000 4200 50  0001 C CNN
-F 3 "" H 1000 4200 50  0000 C CNN
-	1    1000 4200
-	-1   0    0    -1  
-$EndComp
 Text Label 1200 3600 0    60   ~ 0
 I1L
 Text Label 1200 3700 0    60   ~ 0
 I1N
-Text Label 1200 3800 0    60   ~ 0
+Text Label 1200 3950 0    60   ~ 0
 I2L
-Text Label 1200 4100 0    60   ~ 0
+Text Label 1200 4050 0    60   ~ 0
 I2N
-Text Label 1200 4200 0    60   ~ 0
-I3L
 Text Label 1200 4300 0    60   ~ 0
+I3L
+Text Label 1200 4400 0    60   ~ 0
 I3N
 Text Label 4250 3700 2    60   ~ 0
 I2L
@@ -690,7 +617,7 @@ U 1 1 59EDFC1B
 P 4400 2900
 F 0 "C4" H 4425 3000 50  0000 L CNN
 F 1 "0.1uF X2" H 4425 2800 50  0000 L CNN
-F 2 "Capacitors_ThroughHole:C_Rect_L18.0mm_W6.0mm_P15.00mm_FKS3_FKP3" H 4438 2750 50  0001 C CNN
+F 2 "Capacitors_ThroughHole:C_Rect_L13.0mm_W6.0mm_P10.00mm_FKS3_FKP3_MKS4" H 4438 2750 50  0001 C CNN
 F 3 "" H 4400 2900 50  0000 C CNN
 	1    4400 2900
 	0    1    1    0   
@@ -787,7 +714,7 @@ U 1 1 59EE70B9
 P 4400 3900
 F 0 "C6" H 4425 4000 50  0000 L CNN
 F 1 "0.1uF X2" H 4425 3800 50  0000 L CNN
-F 2 "Capacitors_ThroughHole:C_Rect_L18.0mm_W6.0mm_P15.00mm_FKS3_FKP3" H 4438 3750 50  0001 C CNN
+F 2 "Capacitors_ThroughHole:C_Rect_L13.0mm_W6.0mm_P10.00mm_FKS3_FKP3_MKS4" H 4438 3750 50  0001 C CNN
 F 3 "" H 4400 3900 50  0000 C CNN
 	1    4400 3900
 	0    1    1    0   
@@ -872,7 +799,7 @@ U 1 1 59EE7369
 P 4400 4900
 F 0 "C8" H 4425 5000 50  0000 L CNN
 F 1 "0.1uF X2" H 4425 4800 50  0000 L CNN
-F 2 "Capacitors_ThroughHole:C_Rect_L18.0mm_W6.0mm_P15.00mm_FKS3_FKP3" H 4438 4750 50  0001 C CNN
+F 2 "Capacitors_ThroughHole:C_Rect_L13.0mm_W6.0mm_P10.00mm_FKS3_FKP3_MKS4" H 4438 4750 50  0001 C CNN
 F 3 "" H 4400 4900 50  0000 C CNN
 	1    4400 4900
 	0    1    1    0   
@@ -1226,5 +1153,60 @@ F 2 "Resistors_SMD:R_0805" V 8880 4450 50  0001 C CNN
 F 3 "" H 8950 4450 50  0000 C CNN
 	1    8950 4450
 	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_01X02 P3
+U 1 1 5AF87CAC
+P 1000 3650
+F 0 "P3" H 1000 3800 50  0000 C CNN
+F 1 "CONN_01X02" V 1100 3650 50  0000 C CNN
+F 2 "AAA mie lib verificate:KF2EDGK-5.08-2" H 1000 3650 50  0001 C CNN
+F 3 "" H 1000 3650 50  0000 C CNN
+	1    1000 3650
+	-1   0    0    -1  
+$EndComp
+$Comp
+L CONN_01X02 P4
+U 1 1 5AF87D9A
+P 1000 4000
+F 0 "P4" H 1000 4150 50  0000 C CNN
+F 1 "CONN_01X02" V 1100 4000 50  0000 C CNN
+F 2 "AAA mie lib verificate:KF2EDGK-5.08-2" H 1000 4000 50  0001 C CNN
+F 3 "" H 1000 4000 50  0000 C CNN
+	1    1000 4000
+	-1   0    0    -1  
+$EndComp
+$Comp
+L CONN_01X02 P5
+U 1 1 5AF87E79
+P 1000 4350
+F 0 "P5" H 1000 4500 50  0000 C CNN
+F 1 "CONN_01X02" V 1100 4350 50  0000 C CNN
+F 2 "AAA mie lib verificate:KF2EDGK-5.08-2" H 1000 4350 50  0001 C CNN
+F 3 "" H 1000 4350 50  0000 C CNN
+	1    1000 4350
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Conn_01x04 P2
+U 1 1 5AF882DC
+P 1000 3100
+F 0 "P2" H 1000 3300 50  0000 C CNN
+F 1 "Conn_01x04" V 1100 3050 50  0000 C CNN
+F 2 "AAA mie lib verificate:KF2EDGK-5.08-4" H 1000 3100 50  0001 C CNN
+F 3 "" H 1000 3100 50  0001 C CNN
+	1    1000 3100
+	-1   0    0    -1  
+$EndComp
+$Comp
+L CONN_01X02 P1
+U 1 1 5AF8843D
+P 1000 2650
+F 0 "P1" H 1000 2800 50  0000 C CNN
+F 1 "CONN_01X02" V 1100 2650 50  0000 C CNN
+F 2 "AAA mie lib verificate:KF2EDGK-5.08-2" H 1000 2650 50  0001 C CNN
+F 3 "" H 1000 2650 50  0000 C CNN
+	1    1000 2650
+	-1   0    0    -1  
 $EndComp
 $EndSCHEMATC

@@ -1,4 +1,4 @@
-update=gio 10 mag 2018 22:29:50 CEST
+update=dom 13 mag 2018 22:18:15 CEST
 version=1
 last_client=kicad
 [pcbnew]
@@ -25,6 +25,14 @@ version=1
 NetIExt=net
 [general]
 version=1
+[eeschema]
+version=1
+LibDir=../../Libraries
+[eeschema/libraries]
+LibName1=../../Libraries/acdc
+LibName2=../../Libraries/ssr
+LibName3=power
+LibName4=conn
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
@@ -35,11 +43,3 @@ NetFmtName=
 SpiceForceRefPrefix=0
 SpiceUseNetNumbers=0
 LabSize=60
-[eeschema]
-version=1
-LibDir=../../Libraries
-[eeschema/libraries]
-LibName1=../../Libraries/acdc
-LibName2=../../Libraries/ssr
-LibName3=power
-LibName4=conn
