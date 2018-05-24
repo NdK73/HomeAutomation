@@ -85,3 +85,24 @@ The buttons and LEDs are placed so that they match the markers inside the 14042 
 Still work in progress.
 
 A sketch with [partial protocol implementation](https://github.com/NdK73/Domotic) is under test.
+
+Expansions (DomoNode-inout, DomoNode-inputs) are autodetected and (mostly) autoconfigured by library. The algorithm is:
+  - for each I2C bus address from 0x50 to 0x57
+    - if slave found at 0x5X:
+      - determine memory size:
+        - try reading location 0 using 8-bit address (24LC02)
+        - if it fails, try reading location 0 using 16-bit address
+        - if this fails too, abort
+      - read device config from it
+    - if slave is not found at 0x5X, test if a slave is present at 0x2X (PCA9555 in DomoNode-inout 1.0)
+      - if PCA9555 is found, create a fake config for 4 outs and 3 ins (TODO: how to handle other GPIOs?)
+    - instantiate the correct device class
+
+The EEPROM must contain at least these 16 bytes:
+  - 0x00 1 byte Expansion type (Official "registry" is kept in lib sources)
+  - 0x01 1 byte Release code (every new HW release increments the release code)
+  - 0x02 2 bytes Backup of 0x00 and 0x01
+  - 0x04 4 bytes "unique" board ID
+  - 0x08 8 bytes reserved
+The remaining space is used as defined by device class (usually for IO configuration and descriptions).
+The board ID must be "unique enough" so that the master node can detect that an expansion have been changed and invalidate the old mappings.
