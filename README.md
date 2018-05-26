@@ -48,19 +48,27 @@ Uses a PCA9555 for GPIOs and a 24C02 to store the expander config.
 
 ### [DomoDisp](domodisp) 1.1
 
-A node based on ESP8266 that provides physical user interface to the system. Uses a 1.8" ST7735 LCD color display and a rotative encoder. Designed to be mounted either on the front of a DIN rail box or inside a 4-modules Vimar Plana frame -- other frames could work but are untested.
+A node based on ESP8266 that provides physical user interface to the system.
+Uses a 1.8" ST7735 LCD color display and a rotative encoder.
+It is designed to be mounted either on the front of a DIN rail box or inside
+a 4-modules Vimar Plana frame -- other frames could work but are untested.
 
-Requires a 5V power source (possibly a DomoNode-inout, but a dedicated module with power and relay will be published as soon as it's ready).
+Requires a 5V power source (possibly a DomoNode-inout, but a dedicated module
+with power and relay will be published as soon as it's ready).
 
-Includes sample "lib" for reading the encoder (needs cleanup... there still are traces of experiments I did to read ESP's ADC from an interrupt routine).
+Includes sample "lib" for reading the encoder (needs cleanup... there still
+are traces of experiments I did to read ESP's ADC from an interrupt routine).
 
-The display can be managed by [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI) lib and works up to 27MHz (only 10MHz when testing on breadboard) -- remember to edit User_setup.h before compiling your sketch!
+The display can be managed by [TFT_eSPI](https://github.com/Bodmer/TFT_eSPI)
+lib and works up to 27MHz (only 10MHz when testing on breadboard) -- remember
+to edit User_setup.h before compiling your sketch!
 
 [OSHW] IT000003 | [Certified open source hardware](https://oshwa.org/cert)
 
 ### [DomoDispV2](domodisp2) 2.0
 
-**Future** release using shared SPI bus for display, freeing 2 GPIOs. One of the freed GPIOs is used to control dimming.
+**Future** release using shared SPI bus for display, freeing 2 GPIOs. One of
+the freed GPIOs is used to control dimming.
 
 **WARNING**: FW is incompatible with old DomoDisp!
 
@@ -70,23 +78,34 @@ WIP - Still untested !
 
 An expansion board with 11 inputs @ 220V and 5 low-voltage IOs.
 
-When inputs are powered from 220V they get read as logic low. Low-voltage inputs are directly connected to PCA9555 lines so there's a weak (100k) pullup active at powerup. If you want to use 'em as outputs remember to use inverted logic to avoid glitches.
+When inputs are powered from 220V they get read as logic low.
+Low-voltage inputs are directly connected to PCA9555 lines so there's a weak
+(100k) pullup active at powerup. If you want to use 'em as outputs remember
+to use inverted logic to avoid glitches at powerup.
 
 ### [DomoSwitch](domoswitch) 1.0
 
 WIP
 
-A node that hosts 2 relays (or SSRs -- double footprint), 2 pushbuttons and 2 RGB LEDs. Split in 3 sub-boards to fit behind a 2-modules [Vimar Plana 14042 hole cover](https://www.vimar.com/it/it/catalog/product/index/code/14042).
+A node that hosts 2 relays (or SSRs -- double footprint), 2 pushbuttons and 2
+RGB LEDs. Split in 3 sub-boards to fit behind a 2-modules
+[Vimar Plana 14042 hole cover](https://www.vimar.com/it/it/catalog/product/index/code/14042).
 
-The buttons and LEDs are placed so that they match the markers inside the 14042 cover, simplifying the assemply. TODO: support to enclose the dangerous sub-boards (I'll have to prototype it with a 3D printer, but will need a resin cast for the final version).
+The buttons and LEDs are placed so that they match the markers inside the 14042
+cover, simplifying the assemply.
+
+**TODO**: support to enclose the dangerous sub-boards (I'll have to prototype it
+with a 3D printer, but will need a resin cast for the final version).
 
 ## SW
 
 Still work in progress.
 
-A sketch with [partial protocol implementation](https://github.com/NdK73/Domotic) is under test.
+A sketch with [partial protocol implementation](https://github.com/NdK73/Domotic)
+is under test.
 
-Expansions (DomoNode-inout, DomoNode-inputs) are autodetected and (mostly) autoconfigured by library. The algorithm is:
+Expansions (DomoNode-inout, DomoNode-inputs) are autodetected and (mostly)
+autoconfigured by library. The algorithm is:
   - for each I2C bus address from 0x50 to 0x57
     - if slave found at 0x5X:
       - determine memory size:
@@ -104,5 +123,8 @@ The EEPROM must contain at least these 16 bytes:
   - 0x02 2 bytes Backup of 0x00 and 0x01
   - 0x04 4 bytes "unique" board ID
   - 0x08 8 bytes reserved
-The remaining space is used as defined by device class (usually for IO configuration and descriptions).
-The board ID must be "unique enough" so that the master node can detect that an expansion have been changed and invalidate the old mappings.
+
+The remaining space is used as defined by device class (usually for IO
+configuration and descriptions).
+The board ID must be "unique enough" so that the master node can detect that an
+expansion have been changed and invalidate the old mappings.
