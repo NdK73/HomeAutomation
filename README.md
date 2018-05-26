@@ -110,7 +110,9 @@ autoconfigured by library. The algorithm is:
     - if slave found at 0x5X:
       - determine memory size:
         - try reading location 0 using 8-bit address (24LC02)
-        - if it fails, try reading location 0 using 16-bit address
+        - if it fails, try reading location 0 using 16-bit address (that would
+          overwrite location 0 in 8-bit devices, but we already ruled out this
+          is a 8-bit one...)
         - if this fails too, abort
       - read device config from it
     - if slave is not found at 0x5X, test if a slave is present at 0x2X (PCA9555 in DomoNode-inout 1.0)
