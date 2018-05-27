@@ -71,6 +71,8 @@ If err is zero, AnswerSpec depends on SimplePkt:
 MulticastPkt can be generated either in response to some external event (a change in temperature, a timer expiring, ...) or in response to a RequestPkt.
 Nodes can listen to multicast packets to update their state or act in response to events happened on other nodes (f.e. a light turns on when a button on another node is pressed).
 
+Note that setting the node HW config (which lines are inputs, which are outputs, their names and characteristics, etc) is outside the scope of this protocol, and nodes should not allow remote changes.
+
 MulticastPkt:= UpdatePkt | SignedUpdatePkt
   SignedUpdatePkt := 'S' <keyID:WordHex> <signature:Array<ByteHex>> UpdatePkt
   UpdatePkt := <'U'> EventSpec
