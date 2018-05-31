@@ -1,0 +1,2 @@
+Used Panelizer (from GerberTools).
+Requires renaming two files from KiCad's plots: .gm1 to .gml and .drl to .txt *before* combining boards.

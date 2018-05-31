@@ -94,6 +94,10 @@ RGB LEDs. Split in 3 sub-boards to fit behind a 2-modules
 The buttons and LEDs are placed so that they match the markers inside the 14042
 cover, simplifying the assemply.
 
+To be compliant with SeeedFusion rules, I had to split the 3 sub boards as different designs.
+Then I simply combined the sub-boards to better use the 100x100mm area. That means that for
+$15 plus shipping I get 40 complete boards... I hope it doesn't require major mods!
+
 **TODO**: support to enclose the dangerous sub-boards (I'll have to prototype it
 with a 3D printer, but will need a resin cast for the final version).
 
