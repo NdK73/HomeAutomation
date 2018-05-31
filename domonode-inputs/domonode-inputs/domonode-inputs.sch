@@ -49,10 +49,10 @@ U 1 1 5A662F3D
 P 1650 1600
 F 0 "P1" H 1650 1750 50  0000 C CNN
 F 1 "CONN_01X02" V 1750 1600 50  0000 C CNN
-F 2 "AAA mie lib verificate:ScrewTerm_2x3.81" H 1650 1600 50  0001 C CNN
+F 2 "AAA mie lib verificate:KF2EDGK-5.08-2" H 1650 1600 50  0001 C CNN
 F 3 "" H 1650 1600 50  0000 C CNN
 	1    1650 1600
-	-1   0    0    1   
+	-1   0    0    -1  
 $EndComp
 $Comp
 L R R1
@@ -105,10 +105,10 @@ U 1 1 5A66320A
 P 1650 2100
 F 0 "P2" H 1650 2250 50  0000 C CNN
 F 1 "CONN_01X02" V 1750 2100 50  0000 C CNN
-F 2 "AAA mie lib verificate:ScrewTerm_2x3.81" H 1650 2100 50  0001 C CNN
+F 2 "AAA mie lib verificate:KF2EDGK-5.08-2" H 1650 2100 50  0001 C CNN
 F 3 "" H 1650 2100 50  0000 C CNN
 	1    1650 2100
-	-1   0    0    1   
+	-1   0    0    -1  
 $EndComp
 $Comp
 L R R2
@@ -161,10 +161,10 @@ U 1 1 5A663350
 P 1650 2600
 F 0 "P3" H 1650 2750 50  0000 C CNN
 F 1 "CONN_01X02" V 1750 2600 50  0000 C CNN
-F 2 "AAA mie lib verificate:ScrewTerm_2x3.81" H 1650 2600 50  0001 C CNN
+F 2 "AAA mie lib verificate:KF2EDGK-5.08-2" H 1650 2600 50  0001 C CNN
 F 3 "" H 1650 2600 50  0000 C CNN
 	1    1650 2600
-	-1   0    0    1   
+	-1   0    0    -1  
 $EndComp
 $Comp
 L R R3
@@ -217,10 +217,10 @@ U 1 1 5A66336E
 P 1650 3100
 F 0 "P4" H 1650 3250 50  0000 C CNN
 F 1 "CONN_01X02" V 1750 3100 50  0000 C CNN
-F 2 "AAA mie lib verificate:ScrewTerm_2x3.81" H 1650 3100 50  0001 C CNN
+F 2 "AAA mie lib verificate:KF2EDGK-5.08-2" H 1650 3100 50  0001 C CNN
 F 3 "" H 1650 3100 50  0000 C CNN
 	1    1650 3100
-	-1   0    0    1   
+	-1   0    0    -1  
 $EndComp
 $Comp
 L R R4
@@ -273,10 +273,10 @@ U 1 1 5A66360C
 P 1650 3600
 F 0 "P5" H 1650 3750 50  0000 C CNN
 F 1 "CONN_01X02" V 1750 3600 50  0000 C CNN
-F 2 "AAA mie lib verificate:ScrewTerm_2x3.81" H 1650 3600 50  0001 C CNN
+F 2 "AAA mie lib verificate:KF2EDGK-5.08-2" H 1650 3600 50  0001 C CNN
 F 3 "" H 1650 3600 50  0000 C CNN
 	1    1650 3600
-	-1   0    0    1   
+	-1   0    0    -1  
 $EndComp
 $Comp
 L R R5
@@ -329,10 +329,10 @@ U 1 1 5A66362A
 P 1650 4100
 F 0 "P6" H 1650 4250 50  0000 C CNN
 F 1 "CONN_01X02" V 1750 4100 50  0000 C CNN
-F 2 "AAA mie lib verificate:ScrewTerm_2x3.81" H 1650 4100 50  0001 C CNN
+F 2 "AAA mie lib verificate:KF2EDGK-5.08-2" H 1650 4100 50  0001 C CNN
 F 3 "" H 1650 4100 50  0000 C CNN
 	1    1650 4100
-	-1   0    0    1   
+	-1   0    0    -1  
 $EndComp
 $Comp
 L R R6
@@ -385,10 +385,10 @@ U 1 1 5A663648
 P 1650 4600
 F 0 "P7" H 1650 4750 50  0000 C CNN
 F 1 "CONN_01X02" V 1750 4600 50  0000 C CNN
-F 2 "AAA mie lib verificate:ScrewTerm_2x3.81" H 1650 4600 50  0001 C CNN
+F 2 "AAA mie lib verificate:KF2EDGK-5.08-2" H 1650 4600 50  0001 C CNN
 F 3 "" H 1650 4600 50  0000 C CNN
 	1    1650 4600
-	-1   0    0    1   
+	-1   0    0    -1  
 $EndComp
 $Comp
 L R R7
@@ -441,10 +441,10 @@ U 1 1 5A663666
 P 1650 5100
 F 0 "P8" H 1650 5250 50  0000 C CNN
 F 1 "CONN_01X02" V 1750 5100 50  0000 C CNN
-F 2 "AAA mie lib verificate:ScrewTerm_2x3.81" H 1650 5100 50  0001 C CNN
+F 2 "AAA mie lib verificate:KF2EDGK-5.08-2" H 1650 5100 50  0001 C CNN
 F 3 "" H 1650 5100 50  0000 C CNN
 	1    1650 5100
-	-1   0    0    1   
+	-1   0    0    -1  
 $EndComp
 $Comp
 L R R8
@@ -818,10 +818,10 @@ U 1 1 5A6CD257
 P 1650 5550
 F 0 "P9" H 1650 5700 50  0000 C CNN
 F 1 "CONN_01X02" V 1750 5550 50  0000 C CNN
-F 2 "AAA mie lib verificate:ScrewTerm_2x3.81" H 1650 5550 50  0001 C CNN
+F 2 "AAA mie lib verificate:KF2EDGK-5.08-2" H 1650 5550 50  0001 C CNN
 F 3 "" H 1650 5550 50  0000 C CNN
 	1    1650 5550
-	-1   0    0    1   
+	-1   0    0    -1  
 $EndComp
 $Comp
 L R R9
@@ -878,10 +878,10 @@ U 1 1 5A6CD304
 P 1650 6000
 F 0 "P10" H 1650 6150 50  0000 C CNN
 F 1 "CONN_01X02" V 1750 6000 50  0000 C CNN
-F 2 "AAA mie lib verificate:ScrewTerm_2x3.81" H 1650 6000 50  0001 C CNN
+F 2 "AAA mie lib verificate:KF2EDGK-5.08-2" H 1650 6000 50  0001 C CNN
 F 3 "" H 1650 6000 50  0000 C CNN
 	1    1650 6000
-	-1   0    0    1   
+	-1   0    0    -1  
 $EndComp
 $Comp
 L R R10
@@ -960,10 +960,10 @@ U 1 1 5AE9B6C6
 P 1650 6450
 F 0 "P11" H 1650 6600 50  0000 C CNN
 F 1 "CONN_01X02" V 1750 6450 50  0000 C CNN
-F 2 "AAA mie lib verificate:ScrewTerm_2x3.81" H 1650 6450 50  0001 C CNN
+F 2 "AAA mie lib verificate:KF2EDGK-5.08-2" H 1650 6450 50  0001 C CNN
 F 3 "" H 1650 6450 50  0000 C CNN
 	1    1650 6450
-	-1   0    0    1   
+	-1   0    0    -1  
 $EndComp
 $Comp
 L R R11
