@@ -5,6 +5,7 @@ import time
 import socket
 import binascii
 import ed25519
+import base64
 
 ### Configuration
 MCAST_ADDR = "239.255.215.74"
@@ -33,10 +34,12 @@ m=timeupdcmd
 sk=binascii.unhexlify("9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60")
 pk=binascii.unhexlify("d75a980182b10ab7d54bfed3c964073a0ee172f3daa62325af021a68f707511a")
 
-s = binascii.hexlify(ed25519.signature(m,sk,pk))
+rawsig=ed25519.signature(m,sk,pk)
+s = base64.urlsafe_b64encode(rawsig)
 
 cmd = "S"+keyid+s+timeupdcmd
 #print cmd
+#print binascii.hexlify(rawsig);
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
 sock.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)

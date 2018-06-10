@@ -1,4 +1,4 @@
-Domotic protocol (version 0.1.0)
+Domotic protocol (version 0.1.1)
 ================================
 
 When using IP as transport layer, every node must have its own address and must be able to receive and send data *only* from/to the local network.
@@ -74,7 +74,7 @@ Nodes can listen to multicast packets to update their state or act in response t
 Note that setting the node HW config (which lines are inputs, which are outputs, their names and characteristics, etc) is outside the scope of this protocol, and nodes should not allow remote changes.
 
 MulticastPkt:= UpdatePkt | SignedUpdatePkt
-  SignedUpdatePkt := 'S' <keyID:WordHex> <signature:Array<ByteHex>> UpdatePkt
+  SignedUpdatePkt := 'S' <keyID:WordHex> <signature:urlsafe_base64_string> UpdatePkt
   UpdatePkt := <'U'> EventSpec
     EventSpec := InEvent | OutEvent | TimeEvent
       InEvent := <'I'> {DigitalEvent | AnalogEvent}
