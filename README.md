@@ -113,20 +113,26 @@ autoconfigured by library. The algorithm is:
   - for each I2C bus address from 0x50 to 0x57
     - if slave found at 0x5X:
       - determine memory size:
-        - try reading location 0 using 8-bit address (24LC02)
-        - if it fails, try reading location 0 using 16-bit address (that would
-          overwrite location 0 in 8-bit devices, but we already ruled out this
+        - try reading location 0-4 using 8-bit address (24LC02)
+        - try re-reading the same locations, still using 8-bit addresses
+        - compare the two reads: match => 8-bit addresses
+        - read locations 0-4 using 16-bit address (that would overwrite
+          location 0 in 8-bit devices, but we already ruled out this
           is a 8-bit one...)
-        - if this fails too, abort
+        - check first two bytes for 'magic' constant; if wrong, go to next
+          address: not a device we can handle (possibly uninitialized)
       - read device config from it
-    - if slave is not found at 0x5X, test if a slave is present at 0x2X (PCA9555 in DomoNode-inout 1.0)
-      - if PCA9555 is found, create a fake config for 4 outs and 3 ins (TODO: how to handle other GPIOs?)
+    - if slave is not found at 0x5X, test if a slave is present at 0x2X
+      (PCA9555 in DomoNode-inout 1.0)
+      - if PCA9555 is found, create a fake config for 4 outs and 3 ins (TODO:
+        how to handle other GPIOs?)
     - instantiate the correct device class
 
+This algorithm assumes the memory have already been initialized.
 The EEPROM must contain at least these 16 bytes:
-  - 0x00 1 byte Expansion type (Official "registry" is kept in lib sources)
-  - 0x01 1 byte Release code (every new HW release increments the release code)
-  - 0x02 2 bytes Backup of 0x00 and 0x01
+  - 0x00 2 bytes 'magic' 0xD74A (0xD7 in 0x00 and 0x4A in 0x01)
+  - 0x02 1 byte Expansion type (Official "registry" is kept in lib sources)
+  - 0x03 1 byte Release code (every new HW release increments the release code)
   - 0x04 4 bytes "unique" board ID
   - 0x08 8 bytes reserved
 
