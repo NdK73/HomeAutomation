@@ -11,7 +11,7 @@ encoding utf-8
 Sheet 1 1
 Title "DomoNode-inout"
 Date "2018-05-13"
-Rev "1.1.2"
+Rev "1.1.3"
 Comp "CSSHL.org"
 Comment1 ""
 Comment2 ""
@@ -98,12 +98,12 @@ $EndComp
 $Comp
 L GND #PWR03
 U 1 1 59898E1E
-P 9900 4750
-F 0 "#PWR03" H 9900 4500 50  0001 C CNN
-F 1 "GND" H 9900 4600 50  0000 C CNN
-F 2 "" H 9900 4750 50  0000 C CNN
-F 3 "" H 9900 4750 50  0000 C CNN
-	1    9900 4750
+P 9550 4650
+F 0 "#PWR03" H 9550 4400 50  0001 C CNN
+F 1 "GND" H 9550 4500 50  0000 C CNN
+F 2 "" H 9550 4650 50  0000 C CNN
+F 3 "" H 9550 4650 50  0000 C CNN
+	1    9550 4650
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -162,14 +162,14 @@ F 3 "" H 9250 1450 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L CONN_01X10 J1
+L Conn_02x05_Odd_Even J1
 U 1 1 598D80AA
-P 10450 4400
-F 0 "J1" H 10450 4950 50  0000 C CNN
-F 1 "CONN_2x5" V 10550 4400 50  0001 C CNN
-F 2 "Connectors_Multicomp:Multicomp_MC9A12-1034_2x05x2.54mm_Straight" V 10450 4400 50  0001 C CNN
-F 3 "" H 10450 4400 50  0000 C CNN
-	1    10450 4400
+P 10100 4450
+F 0 "J1" H 10150 4750 50  0000 C CNN
+F 1 "CONN_2x5" V 10200 4450 50  0001 C CNN
+F 2 "Connectors_Multicomp:Multicomp_MC9A12-1034_2x05x2.54mm_Straight" V 10100 4450 50  0001 C CNN
+F 3 "" H 10100 4450 50  0000 C CNN
+	1    10100 4450
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -188,7 +188,7 @@ Wire Wire Line
 Wire Wire Line
 	4250 1600 4250 1650
 Wire Wire Line
-	9900 4750 10250 4750
+	9550 4650 9900 4650
 $Comp
 L Omron_G3MB-202 RL1
 U 1 1 598F0DA3
@@ -235,23 +235,23 @@ F 3 "" H 2750 2950 50  0000 C CNN
 	1    2750 2950
 	1    0    0    -1  
 $EndComp
-Text Label 9850 1700 0    60   ~ 0
-SCL
 Text Label 9850 1800 0    60   ~ 0
-SDA
-Text Label 10250 4150 2    60   ~ 0
-TXD
-Text Label 10250 4350 2    60   ~ 0
-RXD
-Text Label 10250 4450 2    60   ~ 0
-SDA
-Text Label 10250 4250 2    60   ~ 0
 SCL
-Text Label 10250 4550 2    60   ~ 0
+Text Label 9850 1700 0    60   ~ 0
+SDA
+Text Label 9900 4350 2    60   ~ 0
+TXD
+Text Label 9900 4450 2    60   ~ 0
+RXD
+Text Label 10400 4450 0    60   ~ 0
+SDA
+Text Label 10400 4350 0    60   ~ 0
+SCL
+Text Label 9900 4550 2    60   ~ 0
 PROG
-Text Label 10250 4050 2    60   ~ 0
+Text Label 10400 4250 0    60   ~ 0
 DBG
-Text Label 10250 4650 2    60   ~ 0
+Text Label 10400 4550 0    60   ~ 0
 ADC
 Text Label 7500 1700 2    60   ~ 0
 RL1
@@ -345,12 +345,12 @@ $EndComp
 $Comp
 L +3.3V #PWR011
 U 1 1 59E7D16B
-P 10250 3950
-F 0 "#PWR011" H 10250 3800 50  0001 C CNN
-F 1 "+3.3V" H 10250 4090 50  0000 C CNN
-F 2 "" H 10250 3950 50  0000 C CNN
-F 3 "" H 10250 3950 50  0000 C CNN
-	1    10250 3950
+P 9900 4250
+F 0 "#PWR011" H 9900 4100 50  0001 C CNN
+F 1 "+3.3V" H 9900 4390 50  0000 C CNN
+F 2 "" H 9900 4250 50  0000 C CNN
+F 3 "" H 9900 4250 50  0000 C CNN
+	1    9900 4250
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -403,7 +403,7 @@ Wire Wire Line
 	8800 2100 10050 2100
 Wire Wire Line
 	8800 2000 10050 2000
-Text Label 10250 4850 2    60   ~ 0
+Text Label 10400 4650 0    60   ~ 0
 5VEXT
 Text Label 9850 2300 2    60   ~ 0
 5VEXT

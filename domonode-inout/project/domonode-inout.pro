@@ -1,4 +1,4 @@
-update=dom 13 mag 2018 22:18:15 CEST
+update=gio 28 giu 2018 22:43:03 CEST
 version=1
 last_client=kicad
 [pcbnew]
@@ -39,7 +39,7 @@ PageLayoutDescrFile=
 PlotDirectoryName=../../../../../tmp/domonode-inout-1.1/
 SubpartIdSeparator=0
 SubpartFirstId=65
-NetFmtName=
+NetFmtName=Pcbnew
 SpiceForceRefPrefix=0
 SpiceUseNetNumbers=0
 LabSize=60
