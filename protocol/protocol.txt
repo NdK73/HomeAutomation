@@ -94,19 +94,38 @@ Registers
 
 When reading register containing arrays, if the optional argument is omitted, only the array len is returned. If the optional argument is given, then the actual element is returned.
 
+Every write to registers must be inside a signed packet.
+
 Changes to register contents must be saved to permanent storage before returning answer packet.
 
-00: node info, READ: string, "protocol_version digital_outs analog_outs digital_ins analog_ins max_txt_len utf8_support"; protocol_version is currently "0.1.0", numbers in *decimal*, utf8_support as 'T' or 'F'; WRITE (requires a signed packet *and* 'sender' still 0x0000) sets 'sender' (node-ID)
-01: (Array<String>) node keys & supported algorithms, "<keyID:WordHex>:algo=key_handle;uses", algo:='ec25519'(key exchange)|'ed25519'(sign)|'aes-enc'|'aes-mac'|'unset'; empty array means neither authentication nor encryption are supported, else number of slots tells the number of keys that can be used; key_handle for public keys is the actual public key, while for private keys is just a key handle (FIXME: define how it's generated), if the key is not yet set but the slot is reserved for a certain algo, handle can be empty; 'uses' is a string of one or more permitted uses for the given key: 'e'ncrypt, 'k'ey agreement, 's'ignature, 'v'erify signature (only pubkey is present); keys can only be set using encrypted packets or OOB; keyID 0000 is reserved for the NULL method (signature generates a sequence of 128 '0', encryption copies the source string) and *MUST* be refused in production builds; keyID FFFF is reserved and can not be used
-02: hostname, string, max 32 characters (packet must be signed to allow changing), when read reports "<hostname> (<build_ID>)"
+00: node info
+    READ: string: "protocol_version digital_outs analog_outs digital_ins analog_ins max_txt_len utf8_support"; protocol_version is currently "0.1.1", numbers in *decimal*, utf8_support as 'T' or 'F'
+    WRITE: (requires a signed packet *and* 'sender' still 0x0000) sets 'sender' (node-ID)
+01: node keys & supported algorithms
+    READ: Array<String>: "<keyID:WordHex>:algo=key_handle;uses", algo:='ec25519'(key exchange)|'ed25519'(sign)|'aes-enc'|'aes-mac'|'unset'; empty array means neither authentication nor encryption are supported, else number of slots tells the number of keys that can be used; key_handle for public keys is the actual public key, while for private keys is just a key handle (FIXME: define how it's generated), if the key is not yet set but the slot is reserved for a certain algo, handle can be empty; 'uses' is a string of one or more permitted uses for the given key: 'e'ncrypt, 'k'ey agreement, 's'ignature, 'v'erify signature (only pubkey is present); keys can only be set using encrypted packets or OOB; keyID 0000 is reserved for the NULL method (signature generates a sequence of 128 '0', encryption copies the source string) and *MUST* be refused in production builds; keyID FFFF is reserved and can not be used
+02: hostname
+    READ: string: "<hostname> (<build_ID>)"
+    WRITE: string, max 32 characters
 03: flags; WordHex, TODO (UdpReportEnable?) -- currently RESERVED
-04: network info, string, write: "WIFI:SSID,password[,ip,mask]" (encrypted); read: "WIFI:SSID,ip"; write: "ETH:DHCP|ip,mask", read: "ETH:ip"; write/read: "BUS:nodeID" (bus must be on a different port than config interface)
-05: display message, string, max max_txt_len (from R0) printable-ASCII characters (0x20-0x7e) for message
+04: network info
+    READ: string: "WIFI:SSID,ip" | "ETH:ip" | "BUS:nodeID"
+    WRITE: string: "WIFI:SSID,password[,ip,mask]" (must also be encrypted) | "ETH:DHCP|ip,mask" | "BUS:nodeID" (bus must be on a different port than config interface)
+05: display message
+    READ: string
+    WRITE: string, max max_txt_len (from R0) printable-ASCII characters (0x20-0x7e) for message
 06-1f: reserved
-20: (Array<WordHex>) digital out port map
-21: (Array<WordHex>) analog out port map
-22: (Array<WordHex>) digital in port map
-23: (Array<WordHex>) analog in port map
+20: digital out port map
+    READ: Array<WordHex> : current mapping of digital outs
+    WRITE: Array<WordHex> : sets new mapping of digital outs
+21: analog out port map
+    READ: Array<WordHex> : current mapping of analog outs
+    WRITE: Array<WordHex> : sets new mapping of analog outs
+22: digital in port map
+    READ: Array<WordHex> : current mapping of digital ins
+    WRITE: Array<WordHex> : sets new mapping of digital ins
+23: analog in port map
+    READ: Array<WordHex> : current mapping of analog ins
+    WRITE: Array<WordHex> : sets new mapping of analog ins
 24: (Array<Event>) events
 25: (Array<?>) timer actions TODO
 26: (Array<WordHex>) timers intervals; most significant nibble is: 0=Monostable|1=Astable, 00=milliseconds, 01=seconds, 10=minutes, 11=hours, 0=RESERVED; the remaining 12 bits define the actual interval
