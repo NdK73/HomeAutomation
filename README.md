@@ -18,7 +18,7 @@ Messages must support authentication and encryption to guarantee that confidenti
 
 All HW designs are in [KiCAD](http://kicad-pcb.org/) 4.0.x (will follow what's packaged in latest [Ubuntu LTS](https://www.ubuntu.com/)) so not to require nonstandard installs.
 
-DIN-rail mounted devices are designed for the 6-modules [AK-DR-04C enclosure](https://www.aliexpress.com/item/-/1733706262.html).
+DIN-rail mounted devices are designed for the 6-modules [AK-DR-04C enclosure](https://www.aliexpress.com/item/-/1733706262.html). **Note:** these enclosures won't fit in a standard DIN rail box, unless you can move the rail further from the front panel (like in Gewiss GW40030).
 
 Other devices are designed to be compatible with Vimar Plana series, but should fit other series with minor adjustements.
 
