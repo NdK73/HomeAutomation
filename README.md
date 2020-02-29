@@ -36,6 +36,16 @@ Provides 4 SSR outputs and an expansion bus connector.
 
 [OSHW] IT000001 | [Certified open source hardware](https://oshwa.org/cert)
 
+### [DomoNode 2.0](domonode2.0) (WIP)
+
+Evolution of DomoNode, but offers 6 inputs @ 230V, 6 SSR 2A@230V (each one have its own independent in and out lines, for maximum flexibility) and 8 independent LEDs, still in a 6-modules DIN rail enclosure. Kept SW compatibility with basic DomoNode (just the first 4 outputs), but different external connections.
+
+Same expansion bus connector as the DomoNode 1.1.
+
+I kept 2mm between L and N lines and it **ought** to be double-insulation, but it's actually not required: the user can't touch anything that is not already expected to be at 230V (screws in connectors) without opening the enclosure (the expansion connector *MUST NOT** be exposed).
+
+The board requires two v-cuts around the central part, drawn on ECO2 layer (but not visible in the image). Once the two boards gets separated, the smaller one have to be mounted over the bigger one, using 2 **plastic** spacers (M3x15mm) and suitable 1x14 pins headers.
+
 ### [DomoNode-inout](domonode-inout) 1.1.1
 
 An expansion node to be mounted in a 6-modules DIN rail enclosure.

@@ -1,0 +1,5 @@
+(sym_lib_table
+  (lib (name ssr)(type Legacy)(uri ${KIPRJMOD}/../../Libraries/ssr.lib)(options "")(descr ""))
+  (lib (name ams1117)(type Legacy)(uri ${KIPRJMOD}/../../Libraries/ams1117.lib)(options "")(descr ""))
+  (lib (name ESP8266-modules)(type Legacy)(uri ${KIPRJMOD}/../../Libraries/ESP8266.lib)(options "")(descr ""))
+)

@@ -1,0 +1,169 @@
+
+(rules PCB domonode2
+  (snap_angle 
+    fortyfive_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (autoroute on)
+    (postroute on)
+    (vias on)
+    (via_costs 50)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 3969)
+    (layer_rule F.Cu
+      (active on)
+      (preferred_direction vertical)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 2.5)
+    )
+    (layer_rule B.Cu
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 1.7)
+    )
+  )
+  (rule
+    (width 127.0)
+    (clear 127.2)
+    (clear 63.5 (type smd_to_turn_gap))
+    (clear 2000.2 (type default_220V))
+    (clear 31.8 (type smd_smd))
+    (clear 2000.2 (type smd_220V))
+    (clear 2000.2 (type "kicad_default"_220V))
+    (clear 2000.2 (type 220V_220V))
+    (clear 2000.2 (type 220V_JLCMIN))
+  )
+  (padstack "Via[0-1]_1000:500_um"
+    (shape
+      (circle F.Cu 1000.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 1000.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (padstack "Via[0-1]_1500:1000_um"
+    (shape
+      (circle F.Cu 1500.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 1500.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (padstack "Via[0-1]_600:200_um"
+    (shape
+      (circle F.Cu 600.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 600.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_1000:500_um" "Via[0-1]_1000:500_um" default
+  )
+  (via 
+    "Via[0-1]_1500:1000_um" "Via[0-1]_1500:1000_um" default
+  )
+  (via 
+    "Via[0-1]_600:200_um" "Via[0-1]_600:200_um" default
+  )
+  (via 
+    "Via[0-1]_1000:500_um-kicad_default" "Via[0-1]_1000:500_um" "kicad_default"
+  )
+  (via 
+    "Via[0-1]_1500:1000_um-kicad_default" "Via[0-1]_1500:1000_um" "kicad_default"
+  )
+  (via 
+    "Via[0-1]_600:200_um-kicad_default" "Via[0-1]_600:200_um" "kicad_default"
+  )
+  (via 
+    "Via[0-1]_1000:500_um-220V" "Via[0-1]_1000:500_um" 220V
+  )
+  (via 
+    "Via[0-1]_1500:1000_um-220V" "Via[0-1]_1500:1000_um" 220V
+  )
+  (via 
+    "Via[0-1]_600:200_um-220V" "Via[0-1]_600:200_um" 220V
+  )
+  (via 
+    "Via[0-1]_1000:500_um-JLCMIN" "Via[0-1]_1000:500_um" JLCMIN
+  )
+  (via 
+    "Via[0-1]_1500:1000_um-JLCMIN" "Via[0-1]_1500:1000_um" JLCMIN
+  )
+  (via 
+    "Via[0-1]_600:200_um-JLCMIN" "Via[0-1]_600:200_um" JLCMIN
+  )
+  (via_rule
+    default "Via[0-1]_600:200_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_1000:500_um-kicad_default"
+  )
+  (via_rule
+    220V "Via[0-1]_1500:1000_um-220V"
+  )
+  (via_rule
+    JLCMIN "Via[0-1]_600:200_um-JLCMIN"
+  )
+  (class default
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 127.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class "kicad_default"
+    +5V GND +3V3 "Net-(Q1-Pad1)" "Net-(Q2-Pad1)" "Net-(Q3-Pad1)" "Net-(Q4-Pad1)" /RL1
+    /RL3 /RL2 /RL4 "Net-(JP1-Pad2)" "Net-(JP1-Pad1)" "Net-(JP2-Pad2)" "Net-(D1-Pad1)" "Net-(C3-Pad1)"
+    "Net-(C4-Pad1)" "Net-(D2-Pad1)" "Net-(D3-Pad1)" "Net-(D4-Pad1)" "Net-(D5-Pad1)" "Net-(D6-Pad1)" "Net-(D7-Pad1)" "Net-(D8-Pad1)"
+    /IN1 /IN2 /IN3 /IN4 /RL5 /IN5 /RL6 /IN6
+    /logicboard/RL1 /logicboard/IN1 /logicboard/RL2 /logicboard/IN2 /logicboard/RL3 /logicboard/IN3 /logicboard/RL4 /logicboard/IN4
+    /logicboard/RL5 /logicboard/IN5 /logicboard/RL6 /logicboard/IN6 "Net-(R9-Pad1)" /logicboard/TXD /logicboard/RXD /logicboard/SDA
+    /logicboard/SCL /logicboard/PROG /logicboard/DBG /logicboard/ADC /logicboard/LED6 /logicboard/LED5 /logicboard/LED4 /logicboard/LED3
+    /logicboard/LED2 /logicboard/LED1 /logicboard/LEDUSER /logicboard/LEDCONN "Net-(Q6-Pad1)" "Net-(Q5-Pad1)" "Net-(C5-Pad1)" "Net-(C6-Pad1)"
+    "Net-(C7-Pad1)" "Net-(C8-Pad1)" +5VD "Net-(R1-Pad1)" "Net-(R2-Pad1)" "Net-(R3-Pad1)" "Net-(R4-Pad1)" "Net-(R5-Pad1)"
+    "Net-(R6-Pad1)" "Net-(R10-Pad1)" "Net-(R11-Pad1)" "Net-(R13-Pad2)" /logicboard/OUT1 /logicboard/OUT2 /logicboard/OUT3 /logicboard/OUT4
+    /logicboard/OUT5 /logicboard/OUT6 GNDD
+    (clearance_class "kicad_default")
+    (via_rule kicad_default)
+    (rule
+      (width 127.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class 220V
+    /L /N "Net-(L1-Pad2)" "Net-(C1-Pad2)" /I1N /I3N /I5N /I2N
+    /I4N /I6N /RL2O /RL2I /RL1O /RL1I /RL3I /RL3O
+    /RL5O /RL5I /RL4O /RL4I /RL6I /RL6O /I1L /I2L
+    /I3L /I4L /I5L /I6L
+    (clearance_class 220V)
+    (via_rule 220V)
+    (rule
+      (width 1000.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class JLCMIN
+    (clearance_class JLCMIN)
+    (via_rule JLCMIN)
+    (rule
+      (width 127.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+)

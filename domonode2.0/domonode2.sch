@@ -1,0 +1,845 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 2
+Title "DomoNode"
+Date "2018-07-26"
+Rev "1.2"
+Comp "CSSHL.org"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L ssr:Omron_G3MB-202 RL1
+U 1 1 598F0DA3
+P 3500 2550
+F 0 "RL1" H 3500 2850 60  0000 C CNN
+F 1 "Omron_G3MB-202" H 3500 2550 60  0000 C CNN
+F 2 "Mie lib:G3MB" H 3500 2550 60  0001 C CNN
+F 3 "" H 3500 2550 60  0001 C CNN
+	1    3500 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L ssr:Omron_G3MB-202 RL3
+U 1 1 598F57B0
+P 3500 4000
+F 0 "RL3" H 3500 4300 60  0000 C CNN
+F 1 "Omron_G3MB-202" H 3400 4000 60  0000 C CNN
+F 2 "Mie lib:G3MB" H 3500 4000 60  0001 C CNN
+F 3 "" H 3500 4000 60  0001 C CNN
+	1    3500 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR03
+U 1 1 598F57DB
+P 3850 3600
+F 0 "#PWR03" H 3850 3450 50  0001 C CNN
+F 1 "+5V" H 3850 3740 50  0000 C CNN
+F 2 "" H 3850 3600 50  0000 C CNN
+F 3 "" H 3850 3600 50  0000 C CNN
+	1    3850 3600
+	1    0    0    -1  
+$EndComp
+$Comp
+L ssr:Omron_G3MB-202 RL2
+U 1 1 598F594E
+P 3500 3300
+F 0 "RL2" H 3500 3600 60  0000 C CNN
+F 1 "Omron_G3MB-202" H 3500 3300 60  0000 C CNN
+F 2 "Mie lib:G3MB" H 3500 3300 60  0001 C CNN
+F 3 "" H 3500 3300 60  0001 C CNN
+	1    3500 3300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR02
+U 1 1 598F5979
+P 3850 2900
+F 0 "#PWR02" H 3850 2750 50  0001 C CNN
+F 1 "+5V" H 3850 3040 50  0000 C CNN
+F 2 "" H 3850 2900 50  0000 C CNN
+F 3 "" H 3850 2900 50  0000 C CNN
+	1    3850 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L ssr:Omron_G3MB-202 RL4
+U 1 1 598F5B9C
+P 3500 4650
+F 0 "RL4" H 3500 4950 60  0000 C CNN
+F 1 "Omron_G3MB-202" H 3400 4650 60  0000 C CNN
+F 2 "Mie lib:G3MB" H 3500 4650 60  0001 C CNN
+F 3 "" H 3500 4650 60  0001 C CNN
+	1    3500 4650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR04
+U 1 1 598F5BC7
+P 3850 4250
+F 0 "#PWR04" H 3850 4100 50  0001 C CNN
+F 1 "+5V" H 3850 4390 50  0000 C CNN
+F 2 "" H 3850 4250 50  0000 C CNN
+F 3 "" H 3850 4250 50  0000 C CNN
+	1    3850 4250
+	1    0    0    -1  
+$EndComp
+Text Label 3850 2350 0    60   ~ 0
+RL1
+Text Label 3850 4450 0    60   ~ 0
+RL4
+$Sheet
+S 4700 6500 2000 850 
+U 5E64B042
+F0 "logicboard" 60
+F1 "brd-logic.sch" 60
+$EndSheet
+$Comp
+L power:+5V #PWR01
+U 1 1 598F4732
+P 3850 2150
+F 0 "#PWR01" H 3850 2000 50  0001 C CNN
+F 1 "+5V" H 3850 2290 50  0000 C CNN
+F 2 "" H 3850 2150 50  0000 C CNN
+F 3 "" H 3850 2150 50  0000 C CNN
+	1    3850 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x14_Female J?
+U 1 1 5E87BFBB
+P 4850 4050
+AR Path="/5E64B042/5E87BFBB" Ref="J?"  Part="1" 
+AR Path="/5E87BFBB" Ref="J4"  Part="1" 
+F 0 "J4" H 4850 3250 50  0000 C CNN
+F 1 "Conn_01x14_Female" H 4850 4900 50  0000 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x14_P2.54mm_Vertical" H 4850 4050 50  0001 C CNN
+F 3 "~" H 4850 4050 50  0001 C CNN
+	1    4850 4050
+	1    0    0    1   
+$EndComp
+Text Label 4650 3450 2    60   ~ 0
+RL1
+Text Label 4650 3650 2    60   ~ 0
+RL2
+Text Label 4650 3850 2    60   ~ 0
+RL3
+Text Label 4650 4050 2    60   ~ 0
+RL4
+Text Label 4650 4250 2    60   ~ 0
+RL5
+Text Label 4650 4450 2    60   ~ 0
+RL6
+$Comp
+L power:+5V #PWR?
+U 1 1 5E87BFC7
+P 4650 3350
+AR Path="/5E64B042/5E87BFC7" Ref="#PWR?"  Part="1" 
+AR Path="/5E87BFC7" Ref="#PWR07"  Part="1" 
+F 0 "#PWR07" H 4650 3200 50  0001 C CNN
+F 1 "+5V" H 4665 3523 50  0000 C CNN
+F 2 "" H 4650 3350 50  0001 C CNN
+F 3 "" H 4650 3350 50  0001 C CNN
+	1    4650 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5E87BFCD
+P 4650 4650
+AR Path="/5E64B042/5E87BFCD" Ref="#PWR?"  Part="1" 
+AR Path="/5E87BFCD" Ref="#PWR08"  Part="1" 
+F 0 "#PWR08" H 4650 4400 50  0001 C CNN
+F 1 "GND" H 4655 4477 50  0000 C CNN
+F 2 "" H 4650 4650 50  0001 C CNN
+F 3 "" H 4650 4650 50  0001 C CNN
+	1    4650 4650
+	1    0    0    -1  
+$EndComp
+Text Label 4650 3550 2    60   ~ 0
+IN1
+Text Label 4650 3750 2    60   ~ 0
+IN2
+Text Label 4650 3950 2    60   ~ 0
+IN3
+Text Label 4650 4150 2    60   ~ 0
+IN4
+Text Label 4650 4350 2    60   ~ 0
+IN5
+Text Label 4650 4550 2    60   ~ 0
+IN6
+$Comp
+L ssr:Omron_G3MB-202 RL5
+U 1 1 5E898832
+P 3500 5300
+F 0 "RL5" H 3500 5600 60  0000 C CNN
+F 1 "Omron_G3MB-202" H 3400 5300 60  0000 C CNN
+F 2 "Mie lib:G3MB" H 3500 5300 60  0001 C CNN
+F 3 "" H 3500 5300 60  0001 C CNN
+	1    3500 5300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR05
+U 1 1 5E898850
+P 3850 4900
+F 0 "#PWR05" H 3850 4750 50  0001 C CNN
+F 1 "+5V" H 3850 5040 50  0000 C CNN
+F 2 "" H 3850 4900 50  0000 C CNN
+F 3 "" H 3850 4900 50  0000 C CNN
+	1    3850 4900
+	1    0    0    -1  
+$EndComp
+$Comp
+L ssr:Omron_G3MB-202 RL6
+U 1 1 5E89BB93
+P 3500 5950
+F 0 "RL6" H 3500 6250 60  0000 C CNN
+F 1 "Omron_G3MB-202" H 3400 5950 60  0000 C CNN
+F 2 "Mie lib:G3MB" H 3500 5950 60  0001 C CNN
+F 3 "" H 3500 5950 60  0001 C CNN
+	1    3500 5950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR06
+U 1 1 5E89BBB1
+P 3850 5550
+F 0 "#PWR06" H 3850 5400 50  0001 C CNN
+F 1 "+5V" H 3850 5690 50  0000 C CNN
+F 2 "" H 3850 5550 50  0000 C CNN
+F 3 "" H 3850 5550 50  0000 C CNN
+	1    3850 5550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Converter_ACDC:HLK-PM01 U1
+U 1 1 5EA187D0
+P 9600 1350
+F 0 "U1" H 9600 1650 60  0000 C CNN
+F 1 "HLK-PM01" H 9600 1350 60  0000 C CNN
+F 2 "Mie lib:ACDC-HLK+ND" H 9600 1350 60  0001 C CNN
+F 3 "" H 9600 1350 60  0000 C CNN
+	1    9600 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Varistor VR1
+U 1 1 5EA187D6
+P 8200 1350
+F 0 "VR1" V 8050 1350 50  0000 C TNN
+F 1 "VR" V 8200 1350 50  0000 C CNN
+F 2 "Varistor:RV_Disc_D15.5mm_W4.2mm_P7.5mm" H 8200 1350 50  0001 C CNN
+F 3 "" H 8200 1350 50  0000 C CNN
+	1    8200 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Fuse F1
+U 1 1 5EA187DC
+P 7850 1600
+F 0 "F1" V 7950 1650 50  0000 C CNN
+F 1 "FUSE" V 7750 1600 50  0000 C CNN
+F 2 "Mie lib:Fuseholder5x20_horiz_SemiClosed_Casing10x25mm" H 7850 1600 50  0001 C CNN
+F 3 "" H 7850 1600 50  0000 C CNN
+	1    7850 1600
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR010
+U 1 1 5EA187E2
+P 10000 1450
+F 0 "#PWR010" H 10000 1200 50  0001 C CNN
+F 1 "GND" H 10000 1300 50  0000 C CNN
+F 2 "" H 10000 1450 50  0000 C CNN
+F 3 "" H 10000 1450 50  0000 C CNN
+	1    10000 1450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR09
+U 1 1 5EA187E8
+P 10000 1250
+F 0 "#PWR09" H 10000 1100 50  0001 C CNN
+F 1 "+5V" H 10000 1390 50  0000 C CNN
+F 2 "" H 10000 1250 50  0000 C CNN
+F 3 "" H 10000 1250 50  0000 C CNN
+	1    10000 1250
+	1    0    0    -1  
+$EndComp
+Text Label 7500 1600 2    60   ~ 0
+L
+Text Label 7500 1100 2    60   ~ 0
+N
+Wire Wire Line
+	8200 1100 8200 1200
+Wire Wire Line
+	8200 1500 8200 1600
+$Comp
+L Device:C C1
+U 1 1 5EA18804
+P 8550 1350
+F 0 "C1" V 8600 1200 50  0000 L CNN
+F 1 ".1uF X2 275V" V 8400 1100 50  0000 L CNN
+F 2 "Capacitor_THT:C_Rect_L13.0mm_W6.0mm_P10.00mm_FKS3_FKP3_MKS4" H 8588 1200 50  0001 C CNN
+F 3 "~" H 8550 1350 50  0001 C CNN
+	1    8550 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:L L1
+U 1 1 5EA1880A
+P 8750 1100
+F 0 "L1" V 8940 1100 50  0000 C CNN
+F 1 "10mH" V 8849 1100 50  0000 C CNN
+F 2 "Mie lib:INDUCTOR_0810" H 8750 1100 50  0001 C CNN
+F 3 "~" H 8750 1100 50  0001 C CNN
+	1    8750 1100
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	7500 1100 8200 1100
+Wire Wire Line
+	8200 1100 8550 1100
+Connection ~ 8200 1100
+Connection ~ 8200 1600
+Wire Wire Line
+	8550 1500 8550 1600
+Wire Wire Line
+	8550 1600 8200 1600
+Wire Wire Line
+	8550 1200 8550 1100
+Connection ~ 8550 1100
+Wire Wire Line
+	8550 1100 8600 1100
+Text Label 3100 2350 2    60   ~ 0
+RL1I
+Text Label 3100 2150 2    60   ~ 0
+RL1O
+Text Label 3100 3100 2    60   ~ 0
+RL2I
+Text Label 3100 2900 2    60   ~ 0
+RL2O
+Text Label 3100 3800 2    60   ~ 0
+RL3I
+Text Label 3100 3600 2    60   ~ 0
+RL3O
+Text Label 3100 4450 2    60   ~ 0
+RL4I
+Text Label 3100 4250 2    60   ~ 0
+RL4O
+Text Label 3100 5100 2    60   ~ 0
+RL5I
+Text Label 3100 4900 2    60   ~ 0
+RL5O
+Text Label 3100 5750 2    60   ~ 0
+RL6I
+Text Label 3100 5550 2    60   ~ 0
+RL6O
+$Comp
+L Connector:Conn_01x06_Female J1
+U 1 1 5EAD3643
+P 1550 3050
+F 0 "J1" H 1500 3350 50  0000 L CNN
+F 1 "Conn_01x06_Female" H 1000 2650 50  0000 L CNN
+F 2 "Mie lib:KF2EDGK-5.08-6" H 1550 3050 50  0001 C CNN
+F 3 "~" H 1550 3050 50  0001 C CNN
+	1    1550 3050
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x06_Female J2
+U 1 1 5EAD6D87
+P 1550 3900
+F 0 "J2" H 1500 4200 50  0000 L CNN
+F 1 "Conn_01x06_Female" H 1050 3500 50  0000 L CNN
+F 2 "Mie lib:KF2EDGK-5.08-6" H 1550 3900 50  0001 C CNN
+F 3 "~" H 1550 3900 50  0001 C CNN
+	1    1550 3900
+	-1   0    0    -1  
+$EndComp
+Text Label 1750 2850 0    60   ~ 0
+RL1I
+Text Label 1750 2950 0    60   ~ 0
+RL1O
+Text Label 1750 3050 0    60   ~ 0
+RL2I
+Text Label 1750 3150 0    60   ~ 0
+RL2O
+Text Label 1750 3250 0    60   ~ 0
+RL3I
+Text Label 1750 3350 0    60   ~ 0
+RL3O
+Text Label 1750 3700 0    60   ~ 0
+RL4I
+Text Label 1750 3800 0    60   ~ 0
+RL4O
+Text Label 1750 3900 0    60   ~ 0
+RL5I
+Text Label 1750 4000 0    60   ~ 0
+RL5O
+Text Label 1750 4100 0    60   ~ 0
+RL6I
+Text Label 1750 4200 0    60   ~ 0
+RL6O
+$Comp
+L Isolator:EL814 U2
+U 1 1 5EAF85F5
+P 8050 2700
+F 0 "U2" H 8050 3025 50  0000 C CNN
+F 1 "TLP620" H 8050 2934 50  0000 C CNN
+F 2 "Mie lib:DIP-4_W7.62mm_e_SOT-4" H 7850 2500 50  0001 L CIN
+F 3 "" H 8075 2700 50  0001 L CNN
+	1    8050 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7600 2600 7750 2600
+Wire Wire Line
+	7600 2800 7750 2800
+$Comp
+L Connector:Conn_01x02_Female J3
+U 1 1 5EB2739F
+P 4600 1650
+F 0 "J3" H 4550 1750 50  0000 L CNN
+F 1 "Conn_01x02_Female" H 4200 1450 50  0000 L CNN
+F 2 "Mie lib:KF2EDGK-5.08-2" H 4600 1650 50  0001 C CNN
+F 3 "~" H 4600 1650 50  0001 C CNN
+	1    4600 1650
+	1    0    0    -1  
+$EndComp
+Text Label 4400 1750 2    60   ~ 0
+L
+Text Label 4400 1650 2    60   ~ 0
+N
+Text Label 7300 2800 2    60   ~ 0
+I1L
+Text Label 7300 2600 2    60   ~ 0
+I1N
+$Comp
+L Connector:Conn_01x02_Female J5
+U 1 1 5EB2F284
+P 5650 1650
+F 0 "J5" H 5542 1835 50  0000 C CNN
+F 1 "Conn_01x02_Female" H 5542 1744 50  0000 C CNN
+F 2 "Mie lib:KF2EDGK-3.81-2" H 5650 1650 50  0001 C CNN
+F 3 "~" H 5650 1650 50  0001 C CNN
+	1    5650 1650
+	-1   0    0    -1  
+$EndComp
+Text Label 5850 1650 0    60   ~ 0
+I1L
+Text Label 5850 1750 0    60   ~ 0
+I1N
+$Comp
+L Isolator:EL814 U3
+U 1 1 5EB47143
+P 8050 3700
+F 0 "U3" H 8050 4025 50  0000 C CNN
+F 1 "TLP620" H 8050 3934 50  0000 C CNN
+F 2 "Mie lib:DIP-4_W7.62mm_e_SOT-4" H 7850 3500 50  0001 L CIN
+F 3 "" H 8075 3700 50  0001 L CNN
+	1    8050 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7600 3600 7750 3600
+Wire Wire Line
+	7600 3800 7750 3800
+$Comp
+L power:GND #PWR012
+U 1 1 5EB4716D
+P 8350 3800
+F 0 "#PWR012" H 8350 3550 50  0001 C CNN
+F 1 "GND" H 8350 3650 50  0000 C CNN
+F 2 "" H 8350 3800 50  0000 C CNN
+F 3 "" H 8350 3800 50  0000 C CNN
+	1    8350 3800
+	1    0    0    -1  
+$EndComp
+Text Label 7300 3800 2    60   ~ 0
+I2L
+Text Label 7300 3600 2    60   ~ 0
+I2N
+Text Label 8350 3600 0    60   ~ 0
+IN2
+$Comp
+L Isolator:EL814 U4
+U 1 1 5EB502A3
+P 8050 4800
+F 0 "U4" H 8050 5125 50  0000 C CNN
+F 1 "TLP620" H 8050 5034 50  0000 C CNN
+F 2 "Mie lib:DIP-4_W7.62mm_e_SOT-4" H 7850 4600 50  0001 L CIN
+F 3 "" H 8075 4800 50  0001 L CNN
+	1    8050 4800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7600 4700 7750 4700
+Wire Wire Line
+	7600 4900 7750 4900
+$Comp
+L power:GND #PWR013
+U 1 1 5EB502CD
+P 8350 4900
+F 0 "#PWR013" H 8350 4650 50  0001 C CNN
+F 1 "GND" H 8350 4750 50  0000 C CNN
+F 2 "" H 8350 4900 50  0000 C CNN
+F 3 "" H 8350 4900 50  0000 C CNN
+	1    8350 4900
+	1    0    0    -1  
+$EndComp
+Text Label 7300 4900 2    60   ~ 0
+I3L
+Text Label 7300 4700 2    60   ~ 0
+I3N
+Text Label 8350 4700 0    60   ~ 0
+IN3
+$Comp
+L Isolator:EL814 U5
+U 1 1 5EB502D8
+P 9900 2700
+F 0 "U5" H 9900 3025 50  0000 C CNN
+F 1 "TLP620" H 9900 2934 50  0000 C CNN
+F 2 "Mie lib:DIP-4_W7.62mm_e_SOT-4" H 9700 2500 50  0001 L CIN
+F 3 "" H 9925 2700 50  0001 L CNN
+	1    9900 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9450 2600 9600 2600
+Wire Wire Line
+	9450 2800 9600 2800
+$Comp
+L power:GND #PWR014
+U 1 1 5EB50302
+P 10200 2800
+F 0 "#PWR014" H 10200 2550 50  0001 C CNN
+F 1 "GND" H 10200 2650 50  0000 C CNN
+F 2 "" H 10200 2800 50  0000 C CNN
+F 3 "" H 10200 2800 50  0000 C CNN
+	1    10200 2800
+	1    0    0    -1  
+$EndComp
+Text Label 9150 2800 2    60   ~ 0
+I4L
+Text Label 9150 2600 2    60   ~ 0
+I4N
+Text Label 10200 2600 0    60   ~ 0
+IN4
+$Comp
+L Isolator:EL814 U6
+U 1 1 5EB5655C
+P 9900 3700
+F 0 "U6" H 9900 4025 50  0000 C CNN
+F 1 "TLP620" H 9900 3934 50  0000 C CNN
+F 2 "Mie lib:DIP-4_W7.62mm_e_SOT-4" H 9700 3500 50  0001 L CIN
+F 3 "" H 9925 3700 50  0001 L CNN
+	1    9900 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9450 3600 9600 3600
+Wire Wire Line
+	9450 3800 9600 3800
+$Comp
+L power:GND #PWR015
+U 1 1 5EB56586
+P 10200 3800
+F 0 "#PWR015" H 10200 3550 50  0001 C CNN
+F 1 "GND" H 10200 3650 50  0000 C CNN
+F 2 "" H 10200 3800 50  0000 C CNN
+F 3 "" H 10200 3800 50  0000 C CNN
+	1    10200 3800
+	1    0    0    -1  
+$EndComp
+Text Label 9150 3800 2    60   ~ 0
+I5L
+Text Label 9150 3600 2    60   ~ 0
+I5N
+Text Label 10200 3600 0    60   ~ 0
+IN5
+$Comp
+L Isolator:EL814 U7
+U 1 1 5EB56591
+P 9900 4800
+F 0 "U7" H 9900 5125 50  0000 C CNN
+F 1 "TLP620" H 9900 5034 50  0000 C CNN
+F 2 "Mie lib:DIP-4_W7.62mm_e_SOT-4" H 9700 4600 50  0001 L CIN
+F 3 "" H 9925 4800 50  0001 L CNN
+	1    9900 4800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9450 4700 9600 4700
+Wire Wire Line
+	9450 4900 9600 4900
+$Comp
+L power:GND #PWR016
+U 1 1 5EB565BB
+P 10200 4900
+F 0 "#PWR016" H 10200 4650 50  0001 C CNN
+F 1 "GND" H 10200 4750 50  0000 C CNN
+F 2 "" H 10200 4900 50  0000 C CNN
+F 3 "" H 10200 4900 50  0000 C CNN
+	1    10200 4900
+	1    0    0    -1  
+$EndComp
+Text Label 9150 4900 2    60   ~ 0
+I6L
+Text Label 9150 4700 2    60   ~ 0
+I6N
+Text Label 10200 4700 0    60   ~ 0
+IN6
+$Comp
+L Connector:Conn_01x02_Female J6
+U 1 1 5EB75827
+P 5650 2050
+F 0 "J6" H 5542 2235 50  0000 C CNN
+F 1 "Conn_01x02_Female" H 5542 2144 50  0000 C CNN
+F 2 "Mie lib:KF2EDGK-3.81-2" H 5650 2050 50  0001 C CNN
+F 3 "~" H 5650 2050 50  0001 C CNN
+	1    5650 2050
+	-1   0    0    -1  
+$EndComp
+Text Label 5850 2050 0    60   ~ 0
+I2L
+Text Label 5850 2150 0    60   ~ 0
+I2N
+$Comp
+L Connector:Conn_01x02_Female J7
+U 1 1 5EB782FF
+P 5650 2450
+F 0 "J7" H 5542 2635 50  0000 C CNN
+F 1 "Conn_01x02_Female" H 5542 2544 50  0000 C CNN
+F 2 "Mie lib:KF2EDGK-3.81-2" H 5650 2450 50  0001 C CNN
+F 3 "~" H 5650 2450 50  0001 C CNN
+	1    5650 2450
+	-1   0    0    -1  
+$EndComp
+Text Label 5850 2450 0    60   ~ 0
+I3L
+Text Label 5850 2550 0    60   ~ 0
+I3N
+$Comp
+L Connector:Conn_01x02_Female J8
+U 1 1 5EB7AE6C
+P 5650 2850
+F 0 "J8" H 5542 3035 50  0000 C CNN
+F 1 "Conn_01x02_Female" H 5550 2650 50  0000 C CNN
+F 2 "Mie lib:KF2EDGK-3.81-2" H 5650 2850 50  0001 C CNN
+F 3 "~" H 5650 2850 50  0001 C CNN
+	1    5650 2850
+	-1   0    0    -1  
+$EndComp
+Text Label 5850 2850 0    60   ~ 0
+I4L
+Text Label 5850 2950 0    60   ~ 0
+I4N
+$Comp
+L Connector:Conn_01x02_Female J9
+U 1 1 5EB7DB38
+P 5650 3250
+F 0 "J9" H 5550 3350 50  0000 C CNN
+F 1 "Conn_01x02_Female" H 5550 3050 50  0000 C CNN
+F 2 "Mie lib:KF2EDGK-3.81-2" H 5650 3250 50  0001 C CNN
+F 3 "~" H 5650 3250 50  0001 C CNN
+	1    5650 3250
+	-1   0    0    -1  
+$EndComp
+Text Label 5850 3250 0    60   ~ 0
+I5L
+Text Label 5850 3350 0    60   ~ 0
+I5N
+$Comp
+L Connector:Conn_01x02_Female J10
+U 1 1 5EB80631
+P 5650 3650
+F 0 "J10" H 5550 3750 50  0000 C CNN
+F 1 "Conn_01x02_Female" H 5550 3450 50  0000 C CNN
+F 2 "Mie lib:KF2EDGK-3.81-2" H 5650 3650 50  0001 C CNN
+F 3 "~" H 5650 3650 50  0001 C CNN
+	1    5650 3650
+	-1   0    0    -1  
+$EndComp
+Text Label 5850 3650 0    60   ~ 0
+I6L
+Text Label 5850 3750 0    60   ~ 0
+I6N
+Wire Wire Line
+	9050 1600 8550 1600
+Connection ~ 8550 1600
+Wire Wire Line
+	9050 1100 8900 1100
+Wire Wire Line
+	7500 1600 7700 1600
+Wire Wire Line
+	8000 1600 8200 1600
+Wire Wire Line
+	9200 1250 9050 1250
+Wire Wire Line
+	9050 1250 9050 1100
+Wire Wire Line
+	9200 1450 9050 1450
+Wire Wire Line
+	9050 1450 9050 1600
+Text Label 3850 3100 0    60   ~ 0
+RL2
+Text Label 3850 3800 0    60   ~ 0
+RL3
+Text Label 3850 5100 0    60   ~ 0
+RL5
+Text Label 3850 5750 0    60   ~ 0
+RL6
+Text Label 8350 2600 0    60   ~ 0
+IN1
+$Comp
+L power:GND #PWR011
+U 1 1 5EB0881C
+P 8350 2800
+F 0 "#PWR011" H 8350 2550 50  0001 C CNN
+F 1 "GND" H 8350 2650 50  0000 C CNN
+F 2 "" H 8350 2800 50  0000 C CNN
+F 3 "" H 8350 2800 50  0000 C CNN
+	1    8350 2800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R6
+U 1 1 5EB56597
+P 9300 4700
+F 0 "R6" V 9200 4850 50  0000 C CNN
+F 1 "1k" V 9200 4600 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 9230 4700 50  0001 C CNN
+F 3 "~" H 9300 4700 50  0001 C CNN
+	1    9300 4700
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C8
+U 1 1 5EB5659D
+P 9300 4900
+F 0 "C8" V 9250 5050 50  0000 C CNN
+F 1 "0.1uF X2" V 9450 4900 50  0000 C CNN
+F 2 "Capacitor_THT:C_Rect_L13.0mm_W6.0mm_P10.00mm_FKS3_FKP3_MKS4" H 9338 4750 50  0001 C CNN
+F 3 "~" H 9300 4900 50  0001 C CNN
+	1    9300 4900
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R3
+U 1 1 5EB502A9
+P 7450 4700
+F 0 "R3" V 7350 4850 50  0000 C CNN
+F 1 "1k" V 7350 4600 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 7380 4700 50  0001 C CNN
+F 3 "~" H 7450 4700 50  0001 C CNN
+	1    7450 4700
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C5
+U 1 1 5EB502AF
+P 7450 4900
+F 0 "C5" V 7400 5050 50  0000 C CNN
+F 1 "0.1uF X2" V 7600 4900 50  0000 C CNN
+F 2 "Capacitor_THT:C_Rect_L13.0mm_W6.0mm_P10.00mm_FKS3_FKP3_MKS4" H 7488 4750 50  0001 C CNN
+F 3 "~" H 7450 4900 50  0001 C CNN
+	1    7450 4900
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R5
+U 1 1 5EB56562
+P 9300 3600
+F 0 "R5" V 9200 3750 50  0000 C CNN
+F 1 "1k" V 9200 3500 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 9230 3600 50  0001 C CNN
+F 3 "~" H 9300 3600 50  0001 C CNN
+	1    9300 3600
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C7
+U 1 1 5EB56568
+P 9300 3800
+F 0 "C7" V 9250 3950 50  0000 C CNN
+F 1 "0.1uF X2" V 9450 3800 50  0000 C CNN
+F 2 "Capacitor_THT:C_Rect_L13.0mm_W6.0mm_P10.00mm_FKS3_FKP3_MKS4" H 9338 3650 50  0001 C CNN
+F 3 "~" H 9300 3800 50  0001 C CNN
+	1    9300 3800
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 5EB47149
+P 7450 3600
+F 0 "R2" V 7350 3750 50  0000 C CNN
+F 1 "1k" V 7350 3500 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 7380 3600 50  0001 C CNN
+F 3 "~" H 7450 3600 50  0001 C CNN
+	1    7450 3600
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C4
+U 1 1 5EB4714F
+P 7450 3800
+F 0 "C4" V 7400 3950 50  0000 C CNN
+F 1 "0.1uF X2" V 7600 3800 50  0000 C CNN
+F 2 "Capacitor_THT:C_Rect_L13.0mm_W6.0mm_P10.00mm_FKS3_FKP3_MKS4" H 7488 3650 50  0001 C CNN
+F 3 "~" H 7450 3800 50  0001 C CNN
+	1    7450 3800
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R4
+U 1 1 5EB502DE
+P 9300 2600
+F 0 "R4" V 9200 2750 50  0000 C CNN
+F 1 "1k" V 9200 2500 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 9230 2600 50  0001 C CNN
+F 3 "~" H 9300 2600 50  0001 C CNN
+	1    9300 2600
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C6
+U 1 1 5EB502E4
+P 9300 2800
+F 0 "C6" V 9250 2950 50  0000 C CNN
+F 1 "0.1uF X2" V 9450 2800 50  0000 C CNN
+F 2 "Capacitor_THT:C_Rect_L13.0mm_W6.0mm_P10.00mm_FKS3_FKP3_MKS4" H 9338 2650 50  0001 C CNN
+F 3 "~" H 9300 2800 50  0001 C CNN
+	1    9300 2800
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C3
+U 1 1 5EAFBD05
+P 7450 2800
+F 0 "C3" V 7400 2950 50  0000 C CNN
+F 1 "0.1uF X2" V 7600 2800 50  0000 C CNN
+F 2 "Capacitor_THT:C_Rect_L13.0mm_W6.0mm_P10.00mm_FKS3_FKP3_MKS4" H 7488 2650 50  0001 C CNN
+F 3 "~" H 7450 2800 50  0001 C CNN
+	1    7450 2800
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 5EAFA9D4
+P 7450 2600
+F 0 "R1" V 7350 2750 50  0000 C CNN
+F 1 "1k" V 7350 2500 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 7380 2600 50  0001 C CNN
+F 3 "~" H 7450 2600 50  0001 C CNN
+	1    7450 2600
+	0    1    1    0   
+$EndComp
+$EndSCHEMATC
