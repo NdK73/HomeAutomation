@@ -16,7 +16,7 @@ Messages must support authentication and encryption to guarantee that confidenti
 
 ## HW
 
-All HW designs are in [KiCAD](http://kicad-pcb.org/) 4.0.x (will follow what's packaged in latest [Ubuntu LTS](https://www.ubuntu.com/)) so not to require nonstandard installs.
+All HW designs were in [KiCAD](http://kicad-pcb.org/) 4.0.x (will follow what's packaged in latest [Ubuntu LTS](https://www.ubuntu.com/)) so not to require nonstandard installs. But 5.x introduced too many new features not to be used, and it's "easy enough" to install ([official instructions](https://kicad-pcb.org/download/ubuntu/)).
 
 DIN-rail mounted devices are designed for the 6-modules [AK-DR-04C enclosure](https://www.aliexpress.com/item/-/1733706262.html). **Note:** these enclosures won't fit in a standard DIN rail box, unless you can move the rail further from the front panel (like in Gewiss GW40030).
 
@@ -45,6 +45,8 @@ Same expansion bus connector as the DomoNode 1.1.
 I kept 2mm between L and N lines and it **ought** to be double-insulation, but it's actually not required: the user can't touch anything that is not already expected to be at 230V (screws in connectors) without opening the enclosure (the expansion connector **MUST NOT** be exposed).
 
 The board requires two v-cuts around the central part, drawn on ECO2 layer (but not visible in the image). Once the two boards gets separated, the smaller one have to be mounted over the bigger one, using 2 **plastic** spacers (M3x15mm) and suitable 1x14 pins headers.
+
+**Note**: Designed in KiCAD 5.1.5.
 
 ### [DomoNode-inout](domonode-inout) 1.1.1
 
@@ -95,7 +97,7 @@ to use inverted logic to avoid glitches at powerup.
 
 ### [DomoSwitch](domoswitch) 1.0
 
-WIP
+WIP / On hold (I'd need to source a suitable front panel, first)
 
 A node that hosts 2 relays (or SSRs -- double footprint), 2 pushbuttons and 2
 RGB LEDs. Split in 3 sub-boards to fit behind a 2-modules
@@ -110,6 +112,11 @@ $15 plus shipping I get 40 complete boards... I hope it doesn't require major mo
 
 **TODO**: support to enclose the dangerous sub-boards (I'll have to prototype it
 with a 3D printer, but will need a resin cast for the final version).
+
+### 3rd-party devices
+
+It's obviously possible to support 3rd-party devices like SonOff, Shelly, touch switches and so on.
+Reversing and further info is usually published first on [my site](https://csshl.net) (mostly Italian-only)
 
 ## SW
 
