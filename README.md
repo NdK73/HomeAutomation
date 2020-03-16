@@ -38,6 +38,8 @@ Provides 4 SSR outputs and an expansion bus connector.
 
 ### [DomoNode 2.0](domonode2.0) (WIP)
 
+**Do not use:**. I'll release soon a new version (see "known problems").
+
 Evolution of DomoNode, but offers 6 inputs @ 230V, 6 SSR 2A@230V (each one have its own independent in and out lines, for maximum flexibility) and 8 independent LEDs, still in a 6-modules DIN rail enclosure. Kept SW compatibility with basic DomoNode (just the first 4 outputs), but different external connections.
 
 Same expansion bus connector as the DomoNode 1.1.
@@ -47,6 +49,14 @@ I kept 2mm between L and N lines and it **ought** to be double-insulation, but i
 The board requires two v-cuts around the central part, drawn on ECO2 layer (but not visible in the image). Once the two boards gets separated, the smaller one have to be mounted over the bigger one, using 2 **plastic** spacers (M3x15mm) and suitable 1x14 pins headers.
 
 **Note**: Designed in KiCAD 5.1.5.
+
+#### Known Problems (to be fixed in v2.1)
+ - Possible glitches at powerup on outputs (**probably not**, but I'll have to test)
+ - Use PCA9555 instead of MCP23017 (smaller, cheaper and already used for other expanders = smaller code footprint)
+ - Trace for 3v3 to expansion connector is too thin
+ - Traces from SSRs to Qn and from Qn to GND are too thin
+ - Many traces are too long (to avoid vias)
+ - The intermediate board could be used as "bus card" to simplify connections
 
 ### [DomoNode-inout](domonode-inout) 1.1.1
 
