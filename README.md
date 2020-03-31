@@ -54,13 +54,20 @@ The board requires two v-cuts around the central part, drawn on ECO2 layer (but 
 
 **Note**: Designed in KiCAD 5.1.5.
 
-#### Known Problems (to be fixed in v2.1)
- - Possible glitches at powerup on outputs (**probably not**, but I'll have to test)
- - Use PCA9555 instead of MCP23017 (smaller, cheaper and already used for other expanders = smaller code footprint)
+#### Known Problems
+
+Fixed in v2.1 WIP:
+ - **EPIC FAIL**: pulldowns instead of pullups on SDA and SCL :( -- it seems to work OK with internal ones, but could be a bit less stable
+ - **FIXABLE FAIL**: SDA and SCL are reversed -- use Wire.begin(5,4);
+ - Possible glitches at powerup on outputs: after a short power fail (~5s) MCP23017 outputs remain in the last state till setup() resets 'em (or indefinitely if you enter programming mode)
  - Trace for 3v3 to expansion connector is too thin
  - Traces from SSRs to Qn and from Qn to GND are too thin
  - Many traces are too long (to avoid vias)
- - The intermediate board could be used as "bus card" to simplify connections
+ - You'll have to cut out about 2mm from the top of the break-out zone to allow the locks on the removable part of the connectors to engage
+
+No need to fix in 2.1:
+ - MCP23017 reset line goes to 3v3 instead of 5V
+ - Limit resistors for LEDs are too strong for PTH LEds but OK for SMD ones
 
 ### [DomoNode-inout](domonode-inout) 1.1.1
 
