@@ -36,6 +36,10 @@ Provides 4 SSR outputs and an expansion bus connector.
 
 [OSHW] IT000001 | [Certified open source hardware](https://oshwa.org/cert)
 
+#### Errata
+
+ - The text for GPIO4 and GPIO5 are reversed in the ESP12 symbol.
+
 ### [DomoNode 2.0](domonode2.0) (WIP)
 
 **Do not use:**. I'll release soon a new version (see "known problems").
@@ -86,6 +90,10 @@ lib and works up to 27MHz (only 10MHz when testing on breadboard) -- remember
 to edit User_setup.h before compiling your sketch!
 
 [OSHW] IT000003 | [Certified open source hardware](https://oshwa.org/cert)
+
+#### Errata
+
+ - The text for GPIO4 and GPIO5 are reversed in the ESP12 symbol.
 
 ### [DomoDispV2](domodisp2) 2.0
 
