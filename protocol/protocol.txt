@@ -102,10 +102,10 @@ Changes to register contents must be saved to permanent storage before returning
     READ: string: "protocol_version digital_outs analog_outs digital_ins analog_ins max_txt_len utf8_support"; protocol_version is currently "0.1.1", numbers in *decimal*, utf8_support as 'T' or 'F'
     WRITE: (requires a signed packet *and* 'sender' still 0x0000) sets 'sender' (node-ID)
 01: node keys & supported algorithms
-    READ: Array<String>: "<keyID:WordHex>:algo=key_handle;uses", algo:='ec25519'(key exchange)|'ed25519'(sign)|'nistp256'(HW-backed, f.e. in ATECC608A)|'aes-enc'|'aes-mac'|'unset'; empty array means neither authentication nor encryption are supported, else number of slots tells the number of keys that can be used; key_handle for public keys is the actual public key, while for private keys is just a key handle (FIXME: define how it's generated), if the key is not yet set but the slot is reserved for a certain algo, handle can be empty; 'uses' is a string of one or more permitted uses for the given key: 'e'ncrypt, 'k'ey agreement, 's'ignature, 'v'erify signature (only pubkey is present); keys can only be set using encrypted packets or OOB; keyID 0000 is reserved for the NULL method (signature generates a sequence of 128 '0', encryption copies the source string) and *MUST* be refused in production builds; keyID FFFF is reserved and can not be used
-02: hostname
+    READ: Array<String>: "<keyID:WordHex>:algo=key_handle;uses", algo:='ec25519'(key exchange)|'ed25519'(sign)|'nistp256'(HW-backed, f.e. in ATECC608A)|'aes-enc'|'aes-mac'|'unset'; empty array means neither authentication nor encryption are supported, else number of slots tells the number of keys that can be used; key_handle for public and private keys is the public key (you can say if the priv key is available by looking at key usage), for secret keys is just a key handle (FIXME: define how it's generated), if the key is not yet set but the slot is reserved for a certain algo, handle can be empty; 'uses' is a string of one or more permitted uses for the given key: 'e'ncrypt, 'k'ey agreement, 's'ignature, 'v'erify signature (only pubkey is present); keys can only be set using encrypted packets or OOB; keyID 0000 is reserved for the NULL method (signature generates a sequence of 128 '0', encryption copies the source string) and *MUST* be refused in production builds; keyID FFFF is reserved and can not be used
+02: hostname (short)
     READ: string: "<hostname> (<build_ID>)"
-    WRITE: string, max 32 characters
+    WRITE: string, max 64 characters ([a-z0-9-], see RFC1123)
 03: flags; WordHex, TODO (UdpReportEnable?) -- currently RESERVED
 04: network info
     READ: string: "WIFI:SSID,ip" | "ETH:ip" | "BUS:nodeID"
