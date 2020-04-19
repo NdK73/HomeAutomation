@@ -157,11 +157,13 @@ autoconfigured by library. The algorithm is:
       - determine memory size:
         - try reading location 0-4 using 8-bit address (24LC02)
         - try re-reading the same locations, still using 8-bit addresses
-        - 'magic' constant found in first two bytes of both reads => 8-bit addresses
-        - else read locations 0-4 using 16-bit address (that would overwrite
+        - both reads are equal => 8-bit addresses
+        - else
+          - set flag for 16-bit addresses
+          - read locations 0-4 using 16-bit address (that would overwrite
           location 0 in 8-bit devices, but we already ruled out this
           is a 8-bit one...)
-        - check first two bytes for 'magic' constant; if wrong, go to next
+      - check first two bytes for 'magic' constant; if wrong, go to next
           address: not a device we can handle (possibly uninitialized)
       - read device config from it
     - if slave is not found at 0x5X, test if a slave is present at 0x2X
