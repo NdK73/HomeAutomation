@@ -40,34 +40,36 @@ Provides 4 SSR outputs and an expansion bus connector.
 
  - The text for GPIO4 and GPIO5 are reversed in the ESP12 symbol.
 
-### [DomoNode 2.0](domonode2.0) (WIP)
-
-**Do not use:**. I'll release soon a new version (see "known problems").
+### [DomoNode 2](domonode2) 2.1 (WIP)
 
 Evolution of DomoNode, but offers 6 inputs @ 230V, 6 SSR 2A@230V (each one have its own independent in and out lines, for maximum flexibility) and 8 independent LEDs, still in a 6-modules DIN rail enclosure. Kept SW compatibility with basic DomoNode (just the first 4 outputs), but different external connections.
+
+To better follow the norms, now inputs are on the top and outputs at the bottom.
 
 Same expansion bus connector as the DomoNode 1.1.
 
 I kept 2mm between L and N lines and it **ought** to be double-insulation, but it's actually not required: the user can't touch anything that is not already expected to be at 230V (screws in connectors) without opening the enclosure (the expansion connector **MUST NOT** be exposed).
 
-The board requires two v-cuts around the central part, drawn on ECO2 layer (but not visible in the image). Once the two boards gets separated, the smaller one have to be mounted over the bigger one, using 2 **plastic** spacers (M3x15mm) and suitable 1x14 pins headers.
+The board requires two v-cuts around the central part, drawn on ECO2 layer (but not visible in the image). Once the two boards gets separated, the smaller one have to be mounted over the bigger one, using 2 M3x25mm **plastic** spacers and suitable 1x14 pins headers (I used 2 1x14 female headers on the boards and 1x14 male pin strip with 21mm long pins to connect the two headers).
 
-**Note**: Designed in KiCAD 5.1.5.
+**Notes**:
+ - Designed in KiCAD 5.1.5.
+ - You can probably omit C8 quite safely
 
-#### Known Problems
-
-Fixed in v2.1 WIP:
- - **EPIC FAIL**: pulldowns instead of pullups on SDA and SCL :( -- it seems to work OK with internal ones, but could be a bit less stable
- - **FIXABLE FAIL**: SDA and SCL are reversed -- use Wire.begin(5,4);
- - Possible glitches at powerup on outputs: after a short power fail (~5s) MCP23017 outputs remain in the last state till setup() resets 'em (or indefinitely if you enter programming mode)
- - Trace for 3v3 to expansion connector is too thin
- - Traces from SSRs to Qn and from Qn to GND are too thin
- - Many traces are too long (to avoid vias)
- - You'll have to cut out about 2mm from the top of the break-out zone to allow the locks on the removable part of the connectors to engage
-
-No need to fix in 2.1:
- - MCP23017 reset line goes to 3v3 instead of 5V
- - Limit resistors for LEDs are too strong for PTH LEds but OK for SMD ones
+#### Changes from (deprecated) [2.0](domonode2.0)
+ - No glitches at powerup on outputs: all outputs are off until told otherwise by FW
+ - Uses PCA9555 instead of MCP23017 (smaller, cheaper and already used for other expanders = smaller code footprint)
+ - PCA9555 requires less components (pullups are included and outputs can directly drive SSRs)
+ - wider traces (6mils were really too thin)
+ - added socket for authentication chip (ATSHA204A or ATECC608A)
+ - slightly moved connectors to better fit enclosure; probably some extra cuts to better accomodate connectors will be required anyway
+ - replaced through-hole LEDs with SMD 0805 ones, better suited for light guides
+ - highlighted pin 1 side for SMD IC footprints
+ - corrected SDA and SCL pin assignment to use Wire.begin()
+ - reduced confusing level semantics: relays and LEDs are ON when writing a HIGH level to the port (required to keep compatibility with FW for DomoNode 1.1), inputs are active when reading a LOW level (can be inverted via PCA9555)
+ - used the PCB part with JLCPCB order number as a guide for LED holes: align "BASE" to the bottom of the concave part at the top of the box cover and use "LEDS CNTR" line to mark LEDs center line, then rotate the ruler and use markers on the short edges as a reference for the center line of the holes (the side opposite to "BASE" must be in contact with the right side of the concave part)
+ - includes (yet untested) lightguides design files, ready to be sent to laser cutting service (use 5mm transparent plexiglas)
+ - includes sample code (just add your FSM; webserver already accepts clicks on relay status to toggle it; config editing not yet implemented)
 
 ### [DomoNode-inout](domonode-inout) 1.1.1
 
@@ -184,3 +186,9 @@ The remaining space is used as defined by device class (usually for IO
 configuration and descriptions).
 The board ID must be "unique enough" so that the master node can detect that an
 expansion have been changed and invalidate the old mappings.
+
+## [Crypto HW](SecurityChips/)
+
+I added to the repository all the informations I found re: security chips that could be used w/o signing NDAs. The list is probably incomplete.
+
+I'm currently working on ATECC608A, trying to reverse engineer the information that would require signing NDA (why, Microchip? WHY??? you opened the docs for the 508...)
