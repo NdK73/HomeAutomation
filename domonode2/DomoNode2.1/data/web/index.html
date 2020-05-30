@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>DomoNode 2.1 example</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width"/>
+</head>
+<style>
+h1 {
+  text-align: center;
+}
+table {
+  border-collapse: collapse;
+}
+table, tr, th {
+  border:1px solid black;
+  padding: 0 .5em;
+}
+th {
+  vertical-align: top;
+}
+td {
+  padding: 0 .5em;
+}
+.undef {
+  background-color: lightgray;
+}
+.active {
+  background-color: red;
+}
+.inactive {
+  background-color: lightgreen;
+}
+.flashing {
+  background-color: yellow;
+}
+
+</style>
+<body>
+<h1>DomoNode 2.1 example</h1>
+<table>
+<tr>
+  <th rowspan='6'>Inputs</th>
+  <td>1</td>
+  <td id='s0' class='undef'>IN_1</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td id='s1' class='undef'>IN_2</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td id='s2' class='undef'>IN_3</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td id='s3' class='undef'>IN_4</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td id='s4' class='undef'>IN_5</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td id='s5' class='undef'>IN_6</td>
+</tr>
+<tr>
+  <th rowspan='6'>Relays</td>
+  <td>1</td>
+  <td id='s6' class='undef'>RL_1</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td id='s7' class='undef'>RL_2</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td id='s8' class='undef'>RL_3</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td id='s9' class='undef'>RL_4</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td id='s10' class='undef'>RL_5</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td id='s11' class='undef'>RL_6</td>
+</tr>
+<tr>
+  <th rowspan='7'>LEDs</td>
+  <td>U</td>
+  <td id='s18' class='undef'>Transizione</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td id='s12' class='undef'>LED_1</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td id='s13' class='undef'>LED_2</td>
+</tr>
+<tr>
+  <td>3</td>
+  <td id='s14' class='undef'>LED_3</td>
+</tr>
+<tr>
+  <td>4</td>
+  <td id='s15' class='undef'>LED_4</td>
+</tr>
+<tr>
+  <td>5</td>
+  <td id='s16' class='undef'>LED_5</td>
+</tr>
+<tr>
+  <td>6</td>
+  <td id='s17' class='undef'>LED_6</td>
+</tr>
+</table>
+<p><a href='update'>Flasher</a></p>
+<footer>ESP8266 powered!</footer>
+<script type="text/javascript">
+function upd() {
+  var req = new XMLHttpRequest();
+  req.onload = function() {
+    var status=req.response;
+    for(pos=0; pos<status.length; ++pos) {
+      d=document.getElementById('s'+pos);
+      switch(status.charAt(pos)) {
+        case '0':
+          d.className='inactive';
+          break;
+        case '1':
+          d.className='active';
+          break;
+        case 'F':
+          d.className='flashing';
+          break;
+        default:
+          d.className='undef';
+      };
+    }
+  };
+  req.open("GET","/status");
+  req.send();
+}
+function toggle(e, oid) {
+  var st=!("active"==e.className);
+  var req = new XMLHttpRequest();
+  req.open("POST", "/set", true);
+  req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  req.send("line="+(oid+1)+"&act="+st);
+}
+
+setInterval(upd, 500); // Update every half second
+for(oid=0; oid<6; ++oid) {
+    var d=document.getElementById('s'+(6+oid));
+    var cb=(function (a,b){return function(){toggle(a,b); return true;}})(d, oid);
+    d.addEventListener('click', cb);
+}
+</script>
+</body>
+</html>
