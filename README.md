@@ -85,8 +85,9 @@ Uses a PCA9555 for GPIOs and a 24C02 to store the expander config.
 
 A node based on ESP8266 that provides physical user interface to the system.
 Uses a 1.8" ST7735 LCD color display and a rotative encoder.
-It is designed to be mounted either on the front of a DIN rail box or inside
-a 4-modules Vimar Plana frame -- other frames could work but are untested.
+It is designed to be mounted either on the front of a DIN rail box, inside
+a 4-modules Vimar Plana frame -- other frames could work but are untested, or
+with the supplied enclosure in a 504 (4-modules) wall box.
 
 Requires a 5V power source (possibly a DomoNode-inout, but a dedicated module
 with power and relay will be published as soon as it's ready).
