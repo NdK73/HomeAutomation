@@ -1,4 +1,4 @@
-===== DomoDisp Enclosure =====
+##### DomoDisp Enclosure
 
 In this folder you can find the enclosure I designed for DomoDisp both in FreeCad and STL formats.
 
