@@ -1,0 +1,210 @@
+esp8266:
+  board: esp12e
+
+i2c: # required for tca9555
+
+tca9555:
+  - id: exp0 # Consider only base IOs
+    address: 0x20 # 20-27, 20 is the first expander, default would be 0x21
+
+switch:
+  - id: rl1
+    name: "${upper_devicename} Relay 1"
+    platform: gpio
+    pin:
+      number: GPIO15
+  - id: rl2
+    name: "${upper_devicename} Relay 2"
+    platform: gpio
+    pin:
+      number: GPIO14
+  - id: rl3
+    name: "${upper_devicename} Relay 3"
+    platform: gpio
+    pin:
+      number: GPIO13
+  - id: rl4
+    name: "${upper_devicename} Relay 4"
+    platform: gpio
+    pin:
+      number: GPIO12
+  - id: rl5
+    name: "${upper_devicename} Relay 5"
+    platform: gpio
+    pin:
+      tca9555: exp0
+      number: 0
+      mode: output
+      #inverted: true
+  - id: rl6
+    name: "${upper_devicename} Relay 6"
+    platform: gpio
+    pin:
+      tca9555: exp0
+      number: 1
+      mode: output
+      #inverted: true
+
+output:
+  - id: pin_ledusr
+    platform: gpio
+    pin:
+      tca9555: exp0
+      number: 9
+      mode: output
+      #inverted: true
+  - id: pin_led1
+    platform: gpio
+    pin:
+      tca9555: exp0
+      number: 10
+      mode: output
+      #inverted: true
+  - id: pin_led2
+    platform: gpio
+    pin:
+      tca9555: exp0
+      number: 11
+      mode: output
+      #inverted: true
+  - id: pin_led3
+    platform: gpio
+    pin:
+      tca9555: exp0
+      number: 12
+      mode: output
+      #inverted: true
+  - id: pin_led4
+    platform: gpio
+    pin:
+      tca9555: exp0
+      number: 13
+      mode: output
+      #inverted: true
+  - id: pin_led5
+    platform: gpio
+    pin:
+      tca9555: exp0
+      number: 14
+      mode: output
+      #inverted: true
+  - id: pin_led6
+    platform: gpio
+    pin:
+      tca9555: exp0
+      number: 15
+      mode: output
+      #inverted: true
+
+light:
+  - id: ledconn
+    platform: status_led
+    #name: "${upper_devicename} Led Conn"
+    #output: pin_ledconn
+    pin:
+      tca9555: exp0
+      number: 8
+      mode: output
+      #inverted: true
+
+  - id: ledusr
+    platform: binary
+    name: "${upper_devicename} Led Usr"
+    output: pin_ledusr
+    restore_mode: ALWAYS_OFF
+  - id: led1
+    platform: binary
+    name: "${upper_devicename} Led 1"
+    output: pin_led1
+    restore_mode: ALWAYS_OFF
+  - id: led2
+    platform: binary
+    name: "${upper_devicename} Led 2"
+    output: pin_led2
+    restore_mode: ALWAYS_OFF
+  - id: led3
+    name: "${upper_devicename} Led 3"
+    platform: binary
+    output: pin_led3
+    restore_mode: ALWAYS_OFF
+  - id: led4
+    platform: binary
+    name: "${upper_devicename} Led 4"
+    output: pin_led4
+    restore_mode: ALWAYS_OFF
+  - id: led5
+    platform: binary
+    name: "${upper_devicename} Led 5"
+    output: pin_led5
+    restore_mode: ALWAYS_OFF
+  - id: led6
+    platform: binary
+    name: "${upper_devicename} Led 6"
+    output: pin_led6
+    restore_mode: ALWAYS_OFF
+
+binary_sensor:
+  - id: in1
+    name: "${upper_devicename} In 1"
+    platform: gpio
+    pin:
+      tca9555: exp0
+      number: 2
+      mode: input
+      #inverted: true
+  - id: in2
+    name: "${upper_devicename} In 2"
+    platform: gpio
+    pin:
+      tca9555: exp0
+      number: 3
+      mode: input
+      #inverted: true
+  - id: in3
+    name: "${upper_devicename} In 3"
+    platform: gpio
+    pin:
+      tca9555: exp0
+      number: 4
+      mode: input
+      #inverted: true
+  - id: in4
+    name: "${upper_devicename} In 4"
+    platform: gpio
+    pin:
+      tca9555: exp0
+      number: 5
+      mode: input
+      #inverted: true
+  - id: in5
+    name: "${upper_devicename} In 5"
+    platform: gpio
+    pin:
+      tca9555: exp0
+      number: 6
+      mode: input
+      #inverted: true
+  - id: in6
+    name: "${upper_devicename} In 6"
+    platform: gpio
+    pin:
+      tca9555: exp0
+      number: 7
+      mode: input
+      #inverted: true
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  fast_connect: true
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "${upper_devicename}"
+    password: !secret wifi_fallback_pass
+
+captive_portal:
+
+# Enable logging
+logger:
+  baud_rate: 0 # Do not log over serial port
