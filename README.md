@@ -56,6 +56,10 @@ The board requires two v-cuts around the central part, drawn on ECO2 layer (but 
  - Designed in KiCAD 5.1.5.
  - You can probably omit C8 quite safely
 
+#### Errata
+
+ - **Use 1k for R15-R22** or D1-D8 will burn after some months of use
+
 #### Changes from (deprecated) [2.0](domonode2.0)
  - No glitches at powerup on outputs: all outputs are off until told otherwise by FW
  - Uses PCA9555 instead of MCP23017 (smaller, cheaper and already used for other expanders = smaller code footprint)
